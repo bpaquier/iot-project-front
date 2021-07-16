@@ -1,0 +1,6 @@
+// Mixin to generate mobile-first repsonsive breakpoints
+@mixin from($screenName) {
+  @media screen and (min-width: map-get($screens, $screenName)) {
+    @content;
+  }
+}

@@ -1,5 +1,9 @@
 @import "styles/theme";
 
 .content {
-  color: map-get($colors, "teal");
+  color: map-get($colors, "darkBlue");
+
+  @include from("xl") {
+    color: map-get($colors, "red");
+  }
 }

@@ -1,3 +1,19 @@
+@import "./mixins";
+
 $colors: (
-  "teal": teal,
+  "darkBlue": #00072d,
+  "tealBlue": #003049,
+  "blue": #0e6ba8,
+  "orange": #f77f00,
+  "yellow": #fcbf49,
+  "lightYellow": #eae2b7,
+  "red": #d62828,
+  "white": #eee,
+  "black": #000,
+);
+
+$screens: (
+  m: 768px,
+  l: 930px,
+  xl: 1290px,
 );
