@@ -2,29 +2,17 @@ import classnames from "classnames/bind";
 import css from "./styles.module.scss";
 const cx = classnames.bind(css);
 
-<<<<<<< HEAD
 import FluxeoIcon from "~/components/Svgs/FluxeoIcon";
 import HomeIcon from "~/components/Svgs/HomeIcon";
 import ClientsIcon from "~/components/Svgs/ClientsIcon";
 import GraphIcon from "~/components/Svgs/GraphIcon";
-=======
-import { useRouter } from "next/router";
-
-import FluxeoIcon from "~/components/Svgs/FluxeoIcon"
-import HomeIcon from "~/components/Svgs/HomeIcon"
-import ClientsIcon from "~/components/Svgs/ClientsIcon"
-import GraphIcon from "~/components/Svgs/GraphIcon"
->>>>>>> components/nav
 
 interface NavProps {
   page?: string;
 }
 
-<<<<<<< HEAD
-function Nav(props: NavProps) {
-=======
 function Nav({ page }) {
->>>>>>> components/nav
+
   return (
     <div className={css.navBar}>
       <div className={css.mainIcon}>
