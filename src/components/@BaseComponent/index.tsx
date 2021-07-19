@@ -8,9 +8,7 @@ interface BaseComponentProps {
 }
 
 function BaseComponent({ className }: BaseComponentProps) {
-  return <div className={cx(className, css.content)}>exemple
-    <HomeIcon></HomeIcon>
-  </div>;
+  return <div className={cx(className, css.content)}>exemple</div>;
 }
 
 export default BaseComponent;
