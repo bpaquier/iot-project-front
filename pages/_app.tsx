@@ -6,6 +6,7 @@ import "~/styles/globals.scss";
 
 import Footer from "~/components/Footer";
 import Nav from "~/components/Nav";
+import Header from "~/components/Header";
 import PageContainer from "~/components/PageContainer";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -20,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav page={pathname} />
+      <Header />
       <PageContainer>
         <Component {...pageProps} />
       </PageContainer>

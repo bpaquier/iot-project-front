@@ -10,6 +10,12 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  border: 2px solid map-get($primary-colors, "main-border");
+  border-bottom: 2px solid map-get($neutral-colors, "athens-gray");
   background-color: map-get($primary-colors, "white");
+}
+
+.title {
+  font-family: map-get($fonts, "title");
+  font-size: 3rem;
+  color: map-get($neutral-colors, "athens-gray-1");
 }

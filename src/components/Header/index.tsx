@@ -11,7 +11,7 @@ interface HeaderProps {
 function Header({ className }: HeaderProps) {
   return (
     <header className={css.header}>
-      <span>Fluxeo</span>
+      <h2 className={css.title}>Fluxeo</h2>
       <SearchBar />
     </header>
   );
