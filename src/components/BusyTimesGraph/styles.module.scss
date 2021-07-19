@@ -1,0 +1,21 @@
+@import "styles/theme";
+
+.container {
+  width: 35rem;
+  height: 12rem;
+
+  svg {
+    g {
+      g {
+        line[type="category"] {
+          display: none !important;
+        }
+      }
+      g:nth-child(2n + 1) {
+        line[type="category"] {
+          display: block !important;
+        }
+      }
+    }
+  }
+}

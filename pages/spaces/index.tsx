@@ -1,7 +1,9 @@
+import BusyTimesGraph from "~/components/BusyTimesGraph";
+
 export default function Spaces() {
   return (
     <div>
-      <span>SPACES PAGE</span>
+      <BusyTimesGraph />
     </div>
   );
 }
