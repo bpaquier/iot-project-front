@@ -1,6 +1,9 @@
 @import "styles/theme";
 
 .navBar {
+  --logo-height: 6rem;
+  --gap-item: 0.5rem;
+
   height: 100vh;
   width: 6rem;
   position: fixed;
@@ -10,7 +13,7 @@
 }
 
 .mainIcon {
-  height: 6rem;
+  height: var(--logo-height);
   width: 100%;
   display: flex;
   align-items: center;
@@ -23,7 +26,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  height: calc(100vh - 6rem);
+  height: calc(100vh - var(--logo-height));
   padding-top: 2rem;
   border-right: 2px solid map-get($neutral-colors, "athens-gray");
 }
@@ -35,15 +38,24 @@
   padding: 6px;
   border-radius: 50%;
   transition: all 0.2s linear;
+  cursor: pointer;
 
   svg {
     fill: #dcdcdc;
     transition: all 0.2s linear;
   }
 
+  &.active {
+    svg {
+      fill: map-get($primary-colors, "coral");
+      transform: fill 0.1s ease;
+    }
+  }
+
   &:hover {
-    background-color: rgba(199, 199, 199, 0.1);
-    cursor: pointer;
+    &:not(.active) {
+      background-color: rgba(199, 199, 199, 0.1);
+    }
   }
 }
 .navIconActive {
@@ -57,4 +69,20 @@
   svg {
     fill: map-get($primary-colors, "coral");
   }
+}
+
+.selector {
+  background-color: rgba(map-get($primary-colors, "coral"), 0.2);
+  cursor: default;
+  border-radius: 50%;
+  position: absolute;
+  height: var(--item-height);
+  width: var(--item-height);
+  top: calc(var(--logo-height) + 2rem);
+  pointer-events: none;
+
+  transition: transform 0.1s ease-in-out;
+  transform: translateY(
+    calc((var(--item-height) + var(--gap-item)) * var(--active-item))
+  );
 }
