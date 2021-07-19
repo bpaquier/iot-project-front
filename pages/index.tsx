@@ -12,7 +12,6 @@ export default function Home() {
     <div className={css.container}>
       <Nav />
       <main className={css.main}>
-        <BaseComponent />
       </main>
     </div>
   );

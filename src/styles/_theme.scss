@@ -1,15 +1,26 @@
 @import "./mixins";
 
-$colors: (
-  "darkBlue": #00072d,
-  "tealBlue": #003049,
-  "blue": #0e6ba8,
-  "orange": #f77f00,
-  "yellow": #fcbf49,
-  "lightYellow": #eae2b7,
-  "red": #d62828,
-  "white": #eee,
+$primary-colors: (
+  "blueGreen": #99DAC7,
+  "aquamarine": #B9FDD9,
+  "melon": #F2AAA1,
+  "coral": #ED7270,
+  "coral-light": rgba(254,119,112,0.1),
+  "white": #fff,
   "black": #000,
+  "main-background": #FDFAFA,
+  "main-border": #EDEFF1
+);
+
+$alert-colors: (
+  "red": #DB5A3A,
+  "red-light": #FAEDEA,
+  "orange": #E29937,
+  "orange-light": #FDF8EB,
+  "green": #66BC6C,
+  "green-light": #EDF7EF,
+  "blue": #2D6FDE,
+  "blue-light": #E7EFF9
 );
 
 $screens: (
