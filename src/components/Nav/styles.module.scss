@@ -4,10 +4,6 @@
   height: 100vh;
   width: 6rem;
   background-color: map-get($primary-colors, "white");
-
-  @include from("xl") {
-    background-color: map-get($alert-colors, "red");
-  }
 }
 
 .mainIcon {
@@ -43,11 +39,19 @@
   }
 
   &:hover {
-    background-color: map-get($primary-colors, "coral-light");
+    background-color: rgba(199,199,199,0.1);
     cursor: pointer;
+  }
+}
+.navIconActive {
+  background-color: map-get($primary-colors, "coral-light");
 
-    svg {
-      fill: map-get($primary-colors, "coral");
-    }
+  &:hover {
+    background-color: map-get($primary-colors, "coral-light");
+    cursor: default;
+  }
+
+  svg {
+    fill: map-get($primary-colors, "coral");
   }
 }

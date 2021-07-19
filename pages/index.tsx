@@ -11,7 +11,7 @@ import SearchBar from "~/components/SearchBar";
 export default function Home() {
   return (
     <div className={css.container}>
-      <Nav />
+      <Nav page="home" />
       <main className={css.main}>
         <BaseComponent />
         <SearchBar />
