@@ -11,7 +11,7 @@ interface NavProps {
   page?: string;
 }
 
-function Nav({ page }) {
+function Nav({ page }: NavProps) {
 
   return (
     <div className={css.navBar}>
