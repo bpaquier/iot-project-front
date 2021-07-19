@@ -12,21 +12,18 @@ import Card from "~/components/Card";
 export default function Home() {
   return (
     <div className={css.container}>
-        <Nav />
-        <LayoutContainer title="Dashboard">
-          <main className={css.main}>
-            <SearchBar />
-          </main>
-        </LayoutContainer>
-        <Card className={css.bureau}> 
-          <h3>
-            Nombre de bureau
-        </h3> 
-          <div className={css.desk}>
+      <LayoutContainer title="Dashboard">
+        <main className={css.main}>
+          <SearchBar />
+        </main>
+      </LayoutContainer>
+      <Card className={css.bureau}>
+        <h3>Nombre de bureau</h3>
+        <div className={css.desk}>
           <p className={css.deskCount}>5</p>
           <p className={css.deskText}>Salles</p>
         </div>
-        </Card>
+      </Card>
     </div>
   );
 }
