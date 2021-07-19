@@ -18,6 +18,11 @@ export default function SearchBar() {
 
   return <div className={cx(css.searchBar, isActive ? css.red : null)} >
     <Search/>
-    <input onChange={(e) => setIsSeachValue(e.target.value)} onBlur={checkIsFocus} onFocus={() => setActive(true)} className={css.input} type="text" name="" id="" />
+    <input 
+      onChange={(e) => setIsSeachValue(e.target.value)} 
+      onBlur={checkIsFocus} onFocus={() => setActive(true)} 
+      className={css.input} 
+      type="text" 
+      placeholder="Rechercher par nom, équipe..."/>
   </div>
 }
