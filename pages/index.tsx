@@ -10,7 +10,7 @@ import BaseComponent from "~/components/@BaseComponent";
 export default function Home() {
   return (
     <div className={css.container}>
-      <Nav />
+      <Nav page="home" />
       <main className={css.main}>
       </main>
     </div>
