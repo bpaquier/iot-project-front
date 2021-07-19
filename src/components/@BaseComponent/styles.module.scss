@@ -4,6 +4,10 @@
   color: map-get($primary-colors, "darkBlue");
 
   @include from("xl") {
+<<<<<<< HEAD
     color: map-get($primary-colors, "red");
+=======
+    color: map-get($alert-colors, "red");
+>>>>>>> e25cc3341668b030f2dc7ec926e8cbf89b2fa76c
   }
 }
