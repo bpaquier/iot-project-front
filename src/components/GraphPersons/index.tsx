@@ -4,7 +4,7 @@ import css from "./styles.module.scss";
 const cx = classnames.bind(css);
 
 
-function GraphCircle({persons = 100, capacity = 100}) {
+function GraphPersons({persons = 100, capacity = 100}) {
 
 	const [progression, setProgression] = useState(360);
   	const graphstyle = {
@@ -14,8 +14,6 @@ function GraphCircle({persons = 100, capacity = 100}) {
 	  const calculateStrokeWidth = () => {
 		let percent = Math.round((persons * 100) / capacity); 
 		let strokePercent = (percent * 360) / 100;
-		console.log(strokePercent);
-		
 		return  360 - strokePercent + 20;
 	  }
 
@@ -37,4 +35,4 @@ function GraphCircle({persons = 100, capacity = 100}) {
 
 }
 
-export default GraphCircle;
+export default GraphPersons;
