@@ -22,7 +22,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const toggleListOfSpaces = (e) => {
     e.preventDefault();
     setToggleOpen(!toggleOpen);
-    console.log(toggleOpen);
   }
 
   return (

@@ -25,9 +25,16 @@
   color: map-get($neutral-colors, "bombay");
 }
 .stage {
-  height: 2.5rem;
-  overflow: hidden;
+  height: 25px;
   margin-bottom: 1.5rem;
+  clip-path: inset(0px 0px -25px 0px);
+  transition: clip-path 0s ease-out, height 200ms ease-out;
+}
+.stageOpen {
+  height: max-content;
+  margin-bottom: 1.5rem;
+  clip-path: inset(0px 0px 0px 0px);
+  transition-delay: 200ms, 0s;
 }
 .itemStage {
   margin-bottom: 1rem;

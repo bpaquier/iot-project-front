@@ -3,6 +3,7 @@
 .item {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .chevronWrapper {
   width: 25px;
@@ -11,7 +12,7 @@
   align-items: center;
   justify-content: center;
   margin-left: auto;
-  border: 1px solid map-get($neutral-colors, "athens-gray" );
+  border: 1px solid map-get($neutral-colors, "athens-gray");
   cursor: pointer;
 }
 .itemName {
