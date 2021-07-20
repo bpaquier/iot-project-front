@@ -7,7 +7,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 interface DailyOccupancyChartProps {
   className?: string;
   data: Array<any>;
-}
+};
 
 export default function DailyOccupancyChart({className, data}: DailyOccupancyChartProps) {
   return (

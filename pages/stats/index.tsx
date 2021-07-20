@@ -15,7 +15,7 @@ export default function Stats() {
   return (
     <LayoutContainer className={css.container} title="Analyse">
       <Card className={css.graphCard} title="Taux d’occupation par jour">
-        <DailyOccupancyChart className={css.graph} data={data} />
+        <DailyOccupancyChart data={data} />
       </Card>
       <Card className title="Centre d’alerte">
         {/* Content */}
