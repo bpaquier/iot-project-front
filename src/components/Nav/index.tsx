@@ -45,7 +45,6 @@ function Nav({ page }: NavProps) {
   const item = useRef(null);
 
   const getActiveItem = () => {
-    console.log(activeItem);
     const [item]: any = navItems.filter((navItem) => {
       return navItem.url === page;
     });

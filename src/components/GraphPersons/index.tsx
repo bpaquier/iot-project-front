@@ -4,7 +4,7 @@ import css from "./styles.module.scss";
 const cx = classnames.bind(css);
 
 
-function GraphPersons({persons = 100, capacity = 100}) {
+function GraphPersons({persons = 75, capacity = 170}) {
 
 	const [progression, setProgression] = useState(360);
   	const graphstyle = {
