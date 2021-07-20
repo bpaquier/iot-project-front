@@ -36,7 +36,19 @@ const officesList = [
     name: 'salle 2',
     etage: 'etage 2',
     coordonnées: 'xxxxx'
-  }
+  },
+  {
+    id: 5,
+    name: 'salle 1',
+    etage: 'etage 3',
+    coordonnées: 'xxxxx'
+  },
+  {
+    id: 6,
+    name: 'salle 3',
+    etage: 'etage 2',
+    coordonnées: 'xxxxx'
+  },
 ]
 
 // Utils for sorting offices by stage
@@ -60,18 +72,44 @@ let stagesList = officesList.reduce(groupByStage, []);
 
 function SpacesList({isOpen}: SpacesListProps) {
 
+  const [toggleStage, setToggleStage] = useState(false)
+
+  const openStage = () => {
+    setToggleStage(!toggleStage)
+  }
+
   return (
     <div className={cx(css.spacesMenu, isOpen ? css.spacesMenuOpen : null)}>
       <h3 className={css.title}>étages</h3>
       {stagesList.map((stage, index) => {
+
+        const heightItem = {
+          heightLabel: 40,
+          heightOffice: 25
+        };
+        const heightStage = heightItem.heightLabel + (stage.length * heightItem.heightOffice);
+
         return (
-          <ul className={css.stage} key={index}>
-            <ItemList className={css.itemStage} label={`Étage ${index + 1}`} url={`/stages`} withIcon={true} />
+          <ul
+            className={cx(css.stage, toggleStage ? css.stageOpen : null)}
+            style={toggleStage ? {height:`${heightStage}px`} : null}
+            key={index}
+            onClick={openStage}>
+            <ItemList
+              className={css.itemStage}
+              label={`Étage ${index + 1}`}
+              url={`/spaces/${index + 1}`}
+              withIcon={true} />
             <li>
               <ul>
                 {stage.map((office, index) => {
                   return (
-                    <ItemList className={css.itemOffice} label={office.name} url={`/exemple/${office.id}`} withIcon={false} key={index} />
+                    <ItemList
+                      className={css.itemOffice}
+                      label={office.name}
+                      url={`/spaces/${office.id}`}
+                      withIcon={false}
+                      key={index} />
                   )
                 })}
               </ul>
