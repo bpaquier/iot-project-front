@@ -14,22 +14,24 @@ import RoomNumber from "~/components/RoomNumber";
 
 export default function Home() {
   return (
-    <div className={css.container}>
-      <LayoutContainer title="Dashboard">
-        <main className={css.main}></main>
+      <LayoutContainer title="Acceuil" className={css.container}>
+    
+        <Card className={css.bureau} title="Nombre de bureau">
+          <RoomNumber></RoomNumber>
+        </Card>
+
+        <Card className={css.persons} title="Nombre de personne dans l'étage">
+          <GraphPersons/>
+        </Card>
+
+        <Card className={css.building} title="Image du batiment cliquable">
+        
+        </Card>
+
+        <Card className={css.alerts} title="Listes des personnes">
+        
+        </Card>
+
       </LayoutContainer>
-      <Card className={css.bureau}>
-        <RoomNumber></RoomNumber>
-      </Card>
-
-      <Card className={css.bureau} title="Nombre de personne dans l'étage">
-        <GraphPersons/>
-      </Card>
-
-      <Card className={css.bureau} title="Taux d’occupation de l’étage">
-        <GraphOccupation/>
-      </Card>
-
-    </div>
   );
 }

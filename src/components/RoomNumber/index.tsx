@@ -7,7 +7,6 @@ function RoomNumber() {
 
   return <div 
         >
-        <h3>Nombre de bureau</h3>
         <div className={css.desk}>
     <p className={css.deskCount}>5</p>
     <p className={css.deskText}>Salles</p>
