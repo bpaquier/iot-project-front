@@ -70,7 +70,7 @@ function Nav({ page, toggleListOfSpaces }: NavProps) {
 
   const toggleMenu = (e) => {
     toggleListOfSpaces(e);
-  }
+  };
 
   return (
     <div className={css.navBar}>
@@ -83,18 +83,18 @@ function Nav({ page, toggleListOfSpaces }: NavProps) {
         <div className={css.selector} style={selectorStyle()}></div>
 
         {navItems.map((navItem, index) => {
-          if(index !== 1) {
+          if (index !== 1) {
             return (
               <Link key={index} href={navItem.url}>
-              <a
-                ref={item}
-                className={cx(css.navIcon, { active: activeItem === index })}
-                title={navItem.title}
-              >
-                {navItem.icon}
-              </a>
-            </Link>
-            )
+                <a
+                  ref={item}
+                  className={cx(css.navIcon, { active: activeItem === index })}
+                  title={navItem.title}
+                >
+                  {navItem.icon}
+                </a>
+              </Link>
+            );
           } else {
             return (
               <a
@@ -102,7 +102,10 @@ function Nav({ page, toggleListOfSpaces }: NavProps) {
                 ref={item}
                 className={cx(css.navIcon, { active: activeItem === index })}
                 title={navItem.title}
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  toggleMenu(e);
+                  setActiveItem(1);
+                }}
               >
                 {navItem.icon}
               </a>
