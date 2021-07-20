@@ -7,6 +7,7 @@ import "~/styles/globals.scss";
 import Footer from "~/components/Footer";
 import Nav from "~/components/Nav";
 import Header from "~/components/Header";
+import SpacesList from "~/components/SpacesList";
 
 import PageContainer from "~/components/PageContainer";
 
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Header />
       <Nav page={pathname} />
+      <SpacesList />
       <PageContainer>
         <Component {...pageProps} />
       </PageContainer>

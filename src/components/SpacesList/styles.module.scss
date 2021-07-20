@@ -1,0 +1,19 @@
+@import "styles/theme";
+
+.spacesMenu {
+  position: fixed;
+  top: 6rem;
+  left: 6rem;
+  z-index: 100;
+  height: calc(100vh - 6rem);
+  padding: 2.5rem 0 0 3rem;
+  border: 1px solid black;
+  background-color: map-get($neutral-colors, "white");
+}
+.title {
+  font-family: map-get($fonts, "title");
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: map-get($neutral-colors, "bombay");
+}
