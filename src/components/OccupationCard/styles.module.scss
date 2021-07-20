@@ -1,0 +1,35 @@
+@import "styles/theme";
+
+.occupation {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 100%;
+}
+
+.infoOccupation{
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.info {
+  margin-left: 1rem;
+}
+
+.infoNumber {
+  font-size: 42px;
+}
+
+.infoText {
+  text-align: center;
+  font-size: 12px;
+  margin-top: .3rem;
+}
+
+.lastText {
+  font-size: 12px;
+  color: map-get($neutral-colors, "bombay");
+}
