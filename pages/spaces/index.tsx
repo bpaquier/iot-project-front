@@ -1,9 +1,31 @@
-import BusyTimesGraph from "~/components/BusyTimesGraph";
+import classnames from "classnames/bind";
+import css from "./styles.module.scss";
+const cx = classnames.bind(css);
+
+import LayoutContainer from "~/components/LayoutContainer";
+
+import Card from "~/components/Card";
+
 
 export default function Spaces() {
   return (
-    <div>
-      <BusyTimesGraph />
-    </div>
+    
+    <LayoutContainer title="Occupation des bureaux" className={css.container}>
+    
+    <Card className={css.building} title="Plan étage">
+    </Card>
+
+    <Card className={css.bureau} title="Nombre de bureau">
+    </Card>
+
+    <Card className={css.persons} title="Nombre personnes étage">
+    </Card>
+
+    <Card className={css.occupation} title="Taux occupation">
+    </Card>
+
+
+  </LayoutContainer>
+  
   );
 }
