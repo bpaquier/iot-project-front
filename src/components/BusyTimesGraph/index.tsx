@@ -1,59 +1,20 @@
-import classnames from "classnames/bind";
 import css from "./styles.module.scss";
 import { useRef, useEffect, useState } from "react";
 import { dataGraph } from "./data";
-const cx = classnames.bind(css);
 
-import {
-  BarChart,
-  Bar,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ReferenceLine,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
-
-const DAYS = [
-  {
-    text: "L",
-    att: "monday",
-  },
-  {
-    text: "M",
-    att: "monday",
-  },
-  {
-    text: "M",
-    att: "wednesday",
-  },
-  {
-    text: "J",
-    att: "thursday",
-  },
-  {
-    text: "V",
-    att: "friday",
-  },
-  {
-    text: "S",
-    att: "saturday",
-  },
-  {
-    text: "S",
-    att: "sunday",
-  },
-];
-
-interface IProps {}
+import { BarChart, Bar, XAxis, ResponsiveContainer, Cell } from "recharts";
+import BusyTimesLabel from "../BusyTimesLabel";
+import BusyTimesDays from "../BusyTimesDays";
 
 function BusyTimesGraph() {
+  // Refs
   const daysPosition = useRef(null);
-  const [activeDay, setActiveDay] = useState(0);
 
+  // States
+  const [activeDay, setActiveDay] = useState(0);
+  const [selectedData, setSelectedData] = useState(null);
+
+  // Functions
   const getDaysPosition = () => {
     const days: NodeListOf<Element> =
       document.querySelectorAll("div[data-day]");
@@ -67,54 +28,50 @@ function BusyTimesGraph() {
     });
   };
 
-  const getOffsetLeft: any = () => {
-    if (!daysPosition.current) return 0;
-    return daysPosition.current[activeDay].left;
-  };
-  const getOffsetWidth: any = () => {
-    if (!daysPosition.current) return 0;
-    return Math.round(daysPosition.current[activeDay].width);
-  };
-
-  const handleClick = (i) => {
+  const handleClick = (i: number): void => {
     setActiveDay(i);
-    console.log("yo");
   };
 
+  const getInitialData = () => {
+    const now = Date.now();
+    const day = new Date(now).getDay();
+    setActiveDay(day - 1);
+    // Todo grab inital hours data
+  };
+
+  // UseEffect
   useEffect(() => {
     getDaysPosition();
+    getInitialData();
   }, []);
 
   return (
     <div className={css.container}>
-      <div className={css.days}>
-        <div
-          className={css.daysSelector}
-          style={{
-            transform: `translateX(${getOffsetLeft()}px)`,
-            width: `${getOffsetWidth()}px`,
-          }}
-        ></div>
-        {DAYS.map((day, i) => {
-          return (
-            <div
-              onClick={() => handleClick(i)}
-              data-day={day.att}
-              className={cx(css.day, "day")}
-            >
-              <p>{day.text}</p>
-            </div>
-          );
-        })}
-      </div>
+      <BusyTimesDays
+        handleClick={handleClick}
+        daysPosition={daysPosition}
+        activeDay={activeDay}
+      />
+      <BusyTimesLabel data={dataGraph[activeDay][selectedData]} />
       <ResponsiveContainer width="100%" height="100%">
         <BarChart width={150} height={40} data={dataGraph[activeDay]}>
           <Bar
             radius={[10, 10, 10, 10]}
             barSize={12}
             dataKey="uv"
-            fill="#F2AAA1"
-          />
+            onClick={(data) => {
+              setSelectedData(data["data-index"]);
+            }}
+          >
+            {dataGraph[activeDay].map((entry, i) => (
+              <Cell
+                key={`cell-${i}`}
+                data-active={i === selectedData}
+                data-index={i}
+                fill={i === selectedData ? "#ED7270" : "#F2AAA1"}
+              />
+            ))}
+          </Bar>
           <XAxis
             padding={{ left: 10, right: 10 }}
             dataKey="name"
