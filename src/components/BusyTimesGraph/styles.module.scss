@@ -19,3 +19,37 @@
     }
   }
 }
+
+.days {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.daysSelector {
+  content: "";
+  display: inline-block;
+  background-color: map-get($primary-colors, "coral");
+  height: 2px;
+  width: 10px;
+  border-radius: 10px;
+  position: absolute;
+  left: 0;
+  top: 150%;
+  transform-origin: center;
+  transition: transform 0.2s;
+}
+
+.day {
+  cursor: pointer;
+  display: block;
+
+  &.active {
+  }
+  p {
+    margin: 0 0.2rem;
+  }
+}
