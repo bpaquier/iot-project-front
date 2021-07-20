@@ -9,6 +9,7 @@ import SearchBar from "~/components/SearchBar";
 import LayoutContainer from "~/components/LayoutContainer";
 import Card from "~/components/Card";
 import GraphPersons from "~/components/GraphPersons";
+import GraphOccupation from "~/components/GraphOccupation";
 
 export default function Home() {
   return (
@@ -27,6 +28,11 @@ export default function Home() {
       <Card className={css.bureau}>
         <h3>Nombre de personne dans l’étage </h3>
         <GraphPersons/>
+      </Card>
+
+      <Card className={css.bureau}>
+        <h3>Nombre de personne dans l’étage </h3>
+        <GraphOccupation/>
       </Card>
 
     </div>
