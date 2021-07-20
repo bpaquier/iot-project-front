@@ -103,9 +103,9 @@ function Nav({ page, toggleListOfSpaces }: NavProps) {
                 className={cx(css.navIcon, { active: activeItem === index })}
                 title={navItem.title}
                 onClick={toggleMenu}
-                >
-                  {navItem.icon}
-                </a>
+              >
+                {navItem.icon}
+              </a>
             );
           }
         })}
