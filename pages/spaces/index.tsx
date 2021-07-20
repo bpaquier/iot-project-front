@@ -5,6 +5,7 @@ const cx = classnames.bind(css);
 import LayoutContainer from "~/components/LayoutContainer";
 
 import Card from "~/components/Card";
+import Etages from "~/components/Etages"
 
 
 export default function Spaces() {
@@ -13,6 +14,7 @@ export default function Spaces() {
     <LayoutContainer title="Occupation des bureaux" className={css.container}>
     
     <Card className={css.building} title="Plan étage">
+      <Etages etage={1}></Etages>
     </Card>
 
     <Card className={css.bureau} title="Nombre de bureau">

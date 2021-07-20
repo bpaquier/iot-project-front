@@ -14,7 +14,6 @@ const [floorHovered, setFloorHovered] = useState(null);
 useEffect(() => {
     // do something
     console.log(floorSelected);
-    
 }, [floorSelected])
 
   return (

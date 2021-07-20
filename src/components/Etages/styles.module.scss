@@ -1,12 +1,10 @@
 @import "styles/theme";
 
-.building {
-    width: 600px;
-    background-image: url('../../assets//images/building.png');
+@import "styles/theme";
+
+.etages {
     background-size: cover;
-    max-width: 100%;
     font-family: map-get($fonts, "title");
-  
   
   path {
     stroke: map-get($primary-colors, "coral");
@@ -33,4 +31,11 @@
 .number {
   font-size: 30px;
   color: map-get($primary-colors, "coral");
+}
+
+.first {
+    background-image: url('../../assets//images/etage1.png');
+}
+.second {
+    background-image: url('../../assets//images/etage2.png');
 }
