@@ -1,7 +1,10 @@
+@import "styles/theme";
+
 .pageContainer {
   box-sizing: border-box;
   width: 100%;
   padding-left: 6rem;
   padding-top: 6rem;
   height: 100vh;
+  background-color: map-get($primary-colors, "background");
 }
