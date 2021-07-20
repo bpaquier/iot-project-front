@@ -1,6 +1,7 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 import "~/styles/globals.scss";
 
@@ -15,6 +16,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   // Grab the current route
   const { pathname } = useRouter();
 
+  // Toggle spaces list
+  const [toggleOpen, setToggleOpen] = useState(false);
+
+  const toggleListOfSpaces = (e) => {
+    e.preventDefault();
+    setToggleOpen(!toggleOpen);
+    console.log(toggleOpen);
+  }
+
   return (
     <>
       <Head>
@@ -23,8 +33,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Nav page={pathname} />
-      <SpacesList />
+      <Nav page={pathname} toggleListOfSpaces={toggleListOfSpaces} />
+      <SpacesList isOpen={toggleOpen} />
       <PageContainer>
         <Component {...pageProps} />
       </PageContainer>
