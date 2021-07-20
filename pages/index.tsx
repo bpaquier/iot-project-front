@@ -8,7 +8,7 @@ import SearchBar from "~/components/SearchBar";
 
 import LayoutContainer from "~/components/LayoutContainer";
 import Card from "~/components/Card";
-import GraphCircle from "~/components/GraphCircle";
+import GraphPersons from "~/components/GraphPersons";
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
 
       <Card className={css.bureau}>
         <h3>Nombre de personne dans l’étage </h3>
-        <GraphCircle/>
+        <GraphPersons/>
       </Card>
 
     </div>
