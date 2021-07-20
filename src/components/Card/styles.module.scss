@@ -1,17 +1,22 @@
 @import "styles/theme";
 
 .card {
-    background: map-get($primary-colors, "background");
-    @include shadow;
-    border-radius: 15px;
-    padding: 20px;
+  background: map-get($primary-colors, "background");
+  @include shadow;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 
-    
-    h3 {
-        padding-bottom: 12px;
-        border-bottom: 1px solid map-get($neutral-colors, "athens-gray-1");
-        font-family: map-get($fonts, "title");
-        font-size: 16px;
-        color: map-get($neutral-colors, "bombay");
-    }
+  h3 {
+    padding-bottom: 1.2rem;
+    //border-bottom: 1px solid map-get($neutral-colors, "athens-gray-1");
+    font-family: map-get($fonts, "title");
+    font-size: 16px;
+    color: map-get($neutral-colors, "bombay");
+    position: absolute;
+    top: 3.5rem;
+  }
 }
