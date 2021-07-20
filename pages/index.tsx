@@ -10,6 +10,7 @@ import LayoutContainer from "~/components/LayoutContainer";
 import Card from "~/components/Card";
 import GraphPersons from "~/components/GraphPersons";
 import GraphOccupation from "~/components/GraphOccupation";
+import RoomNumber from "~/components/RoomNumber";
 
 export default function Home() {
   return (
@@ -18,20 +19,14 @@ export default function Home() {
         <main className={css.main}></main>
       </LayoutContainer>
       <Card className={css.bureau}>
-        <h3>Nombre de bureau</h3>
-        <div className={css.desk}>
-          <p className={css.deskCount}>5</p>
-          <p className={css.deskText}>Salles</p>
-        </div>
+        <RoomNumber></RoomNumber>
       </Card>
 
-      <Card className={css.bureau}>
-        <h3>Nombre de personne dans l’étage </h3>
+      <Card className={css.bureau} title="Nombre de personne dans l'étage">
         <GraphPersons/>
       </Card>
 
-      <Card className={css.bureau}>
-        <h3>Nombre de personne dans l’étage </h3>
+      <Card className={css.bureau} title="Taux d’occupation de l’étage">
         <GraphOccupation/>
       </Card>
 
