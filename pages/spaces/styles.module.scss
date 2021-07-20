@@ -12,12 +12,15 @@
     grid-row-gap: 30px;
     
     grid-template-columns: repeat(3, minmax(15rem, 1fr));
-    grid-template-rows: repeat(3, minmax(15rem, 1fr));
+    grid-template-rows: repeat(6, minmax(33rem, 1fr));
     
     grid-template-areas: 
     "building building building"
     "building building building"
-    "bureau persons occupation";
+    "bureau bureau bureau"
+    "persons persons persons"
+    "occupation occupation occupation ";
+    
   
     
     @include from("l") {
