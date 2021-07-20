@@ -4,9 +4,11 @@ import css from "./styles.module.scss";
 const cx = classnames.bind(css);
 
 
-function GraphPersons({persons = 75, capacity = 170}) {
+function GraphOccupation({persons = 90, capacity = 100}) {
 
 	const [progression, setProgression] = useState(360);
+	const [occupation, setOccupation] = useState(0);
+	
   	const graphstyle = {
 		strokeDashoffset: progression  
   	}
@@ -17,22 +19,27 @@ function GraphPersons({persons = 75, capacity = 170}) {
 		return  360 - strokePercent + 20;
 	  }
 
+	  const calculateOccupationPercent = () => {
+		  return Math.round((persons * 100) / capacity);
+	  }
+
 	  useEffect(() => {
 		setProgression(calculateStrokeWidth())
+		setOccupation(calculateOccupationPercent());
 	  }, [])
   
 
   return <div className={css.circleBig}>
 			<div className={css.text}>
-				{persons}/<div className={css.small}>{capacity}</div>
+				{occupation}%<div className={css.small}>d’occupation</div>
 			</div>
 			<svg>
-				<circle className={css.bg} cx="50%" cy="50%" r="60"></circle>
-				<circle style={graphstyle} className={css.progress} cx="50%" cy="50%" r="60"></circle>
+				<circle style={graphstyle} className={css.progress} cx="50%" cy="50%" r="60">
+				</circle>
 			</svg>
 		</div>
 
 
 }
 
-export default GraphPersons;
+export default GraphOccupation;
