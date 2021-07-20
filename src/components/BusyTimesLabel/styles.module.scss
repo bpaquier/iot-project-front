@@ -1,0 +1,16 @@
+@import "styles/theme";
+
+.labelContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem 0;
+  height: 2ch;
+  margin-bottom: 2rem;
+
+  .labelTime {
+    font-weight: bold;
+  }
+}
