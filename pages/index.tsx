@@ -11,6 +11,7 @@ import Card from "~/components/Card";
 import GraphPersons from "~/components/GraphPersons";
 import GraphOccupation from "~/components/GraphOccupation";
 import RoomNumber from "~/components/RoomNumber";
+import Building from "~/components/Building";
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
         </Card>
 
         <Card className={css.building} title="Image du batiment cliquable">
-        
+           <Building className={css.buildingImg}></Building>
         </Card>
 
         <Card className={css.alerts} title="Listes des personnes">

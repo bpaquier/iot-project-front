@@ -37,6 +37,9 @@
 .building {
   height: 100%;
   grid-area: building;
+  .buildingImg {
+    margin-top: 40px;
+  }
 }
 
 
