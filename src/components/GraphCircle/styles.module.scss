@@ -1,0 +1,70 @@
+@import "styles/theme";
+
+
+.headline {
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+$cirlceSize: 160px;
+
+.circleBig {
+  position: relative;
+  margin-top: 20px;
+
+  svg {
+    stroke: #FE7770;
+  }
+
+  .bg {
+    fill: none;
+    stroke-width: 15px;
+    opacity: 0.4;
+  }
+
+  circle {
+    position: absolute;
+    top: 0;
+  }
+
+  .progress {
+    fill: none;
+    stroke-width: 15px;
+    stroke-linecap: round;
+    stroke-dasharray: 380;
+    stroke-dashoffset: 10;
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 1.5s ease-in;
+    position: absolute;
+    transform: rotate(-90deg);     
+  }
+
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-weight: 400;
+    display: flex;
+    transform: translate(-50%, -50%);
+    font-family: Roboto;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 34px;
+    color: #ED7270;
+  }
+
+  .text .small {
+    font-size: 16px;
+  }
+}
+
+@keyframes big {
+  from {
+    stroke-dashoffset: 360;
+  }
+  to {
+    stroke-dashoffset: 40;
+  }
+}
+
