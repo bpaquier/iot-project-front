@@ -29,13 +29,11 @@ function List() {
     {id: 20, name: "Roger MULER", profession: "Développeur"},
   ]
 
-  return <Card className={css.card}>
+  return <Card className={css.card} title="Liste des personnes">
       <div className={css.headList}>
-        <h3>Liste des personnes</h3>
         {/* <div>filter</div> */}
         {/* rajouter le composant filter */}
       </div>
-      <hr className={css.headListSpearation}/>
       <div className={css.list}>
         <ul className={css.employes}>
           {employes.map(employe => (

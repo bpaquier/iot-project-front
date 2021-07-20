@@ -33,6 +33,7 @@
   display: flex;
   overflow-y: scroll;
   color: map-get($neutral-colors, "bombay");
+  margin-top: 16px;
 }
 
 .list::-webkit-scrollbar {
