@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import Head from "next/head";
 
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
 const cx = classnames.bind(css);
+
+import { fetchUpdatedPresence } from "./api/getUpdatedPresence";
 
 import SearchBar from "~/components/SearchBar";
 
@@ -14,25 +17,26 @@ import RoomNumber from "~/components/RoomNumber";
 import Building from "~/components/Building";
 
 export default function Home() {
+  useEffect(() => {
+    fetchUpdatedPresence().then((rep) => console.log(rep.data));
+  });
+  fetchUpdatedPresence();
+
   return (
-      <LayoutContainer title="Acceuil" className={css.container}>
-    
-        <Card className={css.bureau} title="Nombre de bureau">
-          <RoomNumber></RoomNumber>
-        </Card>
+    <LayoutContainer title="Acceuil" className={css.container}>
+      <Card className={css.bureau} title="Nombre de bureau">
+        <RoomNumber></RoomNumber>
+      </Card>
 
-        <Card className={css.persons} title="Nombre de personne dans l'étage">
-          <GraphPersons/>
-        </Card>
+      <Card className={css.persons} title="Nombre de personne dans l'étage">
+        <GraphPersons />
+      </Card>
 
-        <Card className={css.building} title="Image du batiment cliquable">
-           <Building className={css.buildingImg}></Building>
-        </Card>
+      <Card className={css.building} title="Image du batiment cliquable">
+        <Building className={css.buildingImg}></Building>
+      </Card>
 
-        <Card className={css.alerts} title="Listes des personnes">
-        
-        </Card>
-
-      </LayoutContainer>
+      <Card className={css.alerts} title="Listes des personnes"></Card>
+    </LayoutContainer>
   );
 }
