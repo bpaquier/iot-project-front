@@ -6,9 +6,16 @@ import ChevronIcon from "~/components/Svgs/ChevronIcon"
 
 const cx = classnames.bind(css);
 
-function ItemList({ style, label, url, withIcon }) {
+interface ListItemProps {
+  className?: string;
+  label?: string;
+  url?: string;
+  withIcon?: boolean;
+}
+
+function ItemList({ className, label, url, withIcon }: ListItemProps) {
   return (
-    <li className={cx(css.item, style)}>
+    <li className={cx(css.item, className)}>
       <Link href={url}>
         <a className={css.itemName} title={label}>{label}</a>
       </Link>

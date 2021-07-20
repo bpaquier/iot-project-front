@@ -4,14 +4,6 @@
   display: flex;
   align-items: center;
 }
-.itemStage {
-  margin-bottom: 1rem;
-  padding-left: 2rem;
-}
-.itemOffice {
-  margin-bottom: 0.5rem;
-  padding-left: 3rem;
-}
 .chevronWrapper {
   width: 25px;
   height: 25px;
@@ -32,10 +24,4 @@
 }
 .itemName::first-letter {
   text-transform: uppercase;
-}
-.itemActive {
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  border-radius: 20px;
-  background-color: map-get($primary-colors, "coral")
 }

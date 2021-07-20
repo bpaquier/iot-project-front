@@ -6,6 +6,10 @@ import Link from "next/link";
 import ChevronIcon from "~/components/Svgs/ChevronIcon"
 import ItemList from "~/components/ItemList"
 
+interface SpacesListProps {
+  isOpen: boolean;
+}
+
 const cx = classnames.bind(css);
 
 const officesList = [
@@ -54,20 +58,20 @@ function groupByStage(memo, item) {
 
 let stagesList = officesList.reduce(groupByStage, []);
 
-function SpacesList() {
+function SpacesList({isOpen}: SpacesListProps) {
 
   return (
-    <div className={css.spacesMenu}>
+    <div className={cx(css.spacesMenu, isOpen ? css.spacesMenuOpen : null)}>
       <h3 className={css.title}>étages</h3>
       {stagesList.map((stage, index) => {
         return (
           <ul className={css.stage} key={index}>
-            <ItemList style="css.itemStage" label={`Étage ${index + 1}`} url={`/stages`} withIcon={true} />
+            <ItemList className={css.itemStage} label={`Étage ${index + 1}`} url={`/stages`} withIcon={true} />
             <li>
               <ul>
                 {stage.map((office, index) => {
                   return (
-                    <ItemList style="css.itemOffice" label={office.name} url={`/exemple/${office.id}`} withIcon={false} />
+                    <ItemList className={css.itemOffice} label={office.name} url={`/exemple/${office.id}`} withIcon={false} key={index} />
                   )
                 })}
               </ul>

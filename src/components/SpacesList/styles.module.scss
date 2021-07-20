@@ -10,7 +10,10 @@
   padding: 2.5rem 1rem;
   background-color: map-get($neutral-colors, "white");
   transform: translateX(-20rem);
-  transition: all 0.5s ease-in;
+  transition: all 0.4s linear;
+}
+.spacesMenuOpen {
+  transform: translateX(0rem);
 }
 .title {
   font-family: map-get($fonts, "title");
@@ -22,5 +25,21 @@
   color: map-get($neutral-colors, "bombay");
 }
 .stage {
+  height: 2.5rem;
+  overflow: hidden;
   margin-bottom: 1.5rem;
+}
+.itemStage {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+.itemOffice {
+  margin-bottom: 0.5rem;
+  padding-left: 3rem;
+}
+.itemActive {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  border-radius: 20px;
+  background-color: map-get($primary-colors, "coral");
 }
