@@ -12,13 +12,18 @@ import GraphPersons from "~/components/GraphPersons";
 import GraphOccupation from "~/components/GraphOccupation";
 import RoomNumber from "~/components/RoomNumber";
 import Building from "~/components/Building";
+import OccupationCard from "~/components/OccupationCard";
 
 export default function Home() {
   return (
       <LayoutContainer title="Acceuil" className={css.container}>
     
-        <Card className={css.bureau} title="Nombre de bureau">
+        {/* <Card className={css.bureau} title="Nombre de bureau">
           <RoomNumber></RoomNumber>
+        </Card> */}
+
+        <Card className={css.occupation} title='Occupation du bâtiment'>
+          <OccupationCard />
         </Card>
 
         <Card className={css.persons} title="Nombre de personne dans l'étage">
