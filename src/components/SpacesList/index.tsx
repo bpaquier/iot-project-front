@@ -12,102 +12,108 @@ interface SpacesListProps {
 
 const cx = classnames.bind(css);
 
-const officesList = [
+const roomsList = [
   {
-    id: 1,
-    name: 'salle 1',
-    etage: 'etage 1',
-    coordonnées: 'xxxxx'
+    id_room: 1,
+    name: '101',
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 5,
+    floor: 1,
   },
   {
-    id: 2,
-    name: 'salle 2',
-    etage: 'etage 1',
-    coordonnées: 'xxxxx'
+    id_room: 2,
+    name: '201',
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 4,
+    floor: 2,
   },
   {
-    id: 3,
-    name: 'salle 1',
-    etage: 'etage 2',
-    coordonnées: 'xxxxx'
+    id_room: 3,
+    name: '102',
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 8,
+    floor: 1,
   },
   {
-    id: 4,
-    name: 'salle 2',
-    etage: 'etage 2',
-    coordonnées: 'xxxxx'
+    id_room: 4,
+    name: '301',
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 9,
+    floor: 3,
   },
   {
-    id: 5,
-    name: 'salle 1',
-    etage: 'etage 3',
-    coordonnées: 'xxxxx'
+    id_room: 5,
+    name: '202',
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 6,
+    floor: 2,
   },
   {
-    id: 6,
-    name: 'salle 3',
-    etage: 'etage 2',
-    coordonnées: 'xxxxx'
-  },
+    id_room: 6,
+    name: '203',
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 7,
+    floor: 2,
+  }
 ]
 
 // Utils for sorting offices by stage
-function compareStage(stage, item) {
-  return stage === item.etage;
+function compareFloor(floor, item) {
+  return floor === item.floor;
 }
-function containStage(stage, items) {
-  return items.some(compareStage.bind(null, stage));
+function containFloor(floor, items) {
+  return items.some(compareFloor.bind(null, floor));
 }
-function groupByStage(memo, item) {
-  let stage = memo.filter(containStage.bind(null, item.etage));
-  if (stage.length > 0) {
-    stage[0].push(item);
+function groupByFloor(memo, item) {
+  let floor = memo.filter(containFloor.bind(null, item.floor));
+  if (floor.length > 0) {
+    floor[0].push(item);
   } else {
     memo.push([item]);
   }
   return memo;
 }
 
-let stagesList = officesList.reduce(groupByStage, []);
+let floorsList = roomsList.reduce(groupByFloor, []);
 
 function SpacesList({isOpen}: SpacesListProps) {
 
-  const [toggleStage, setToggleStage] = useState(false)
+  const [toggleFloor, setToggleFloor] = useState(false)
 
-  const openStage = () => {
-    setToggleStage(!toggleStage)
+  const openFloor = () => {
+    setToggleFloor(!toggleFloor)
   }
 
   return (
     <div className={cx(css.spacesMenu, isOpen ? css.spacesMenuOpen : null)}>
       <h3 className={css.title}>étages</h3>
-      {stagesList.map((stage, index) => {
+      {floorsList.map((floor, index) => {
 
         const heightItem = {
           heightLabel: 40,
-          heightOffice: 25
+          heightRoom: 25
         };
-        const heightStage = heightItem.heightLabel + (stage.length * heightItem.heightOffice);
+        const heightFloor = heightItem.heightLabel + (floor.length * heightItem.heightRoom);
 
         return (
           <ul
-            className={cx(css.stage, toggleStage ? css.stageOpen : null)}
-            style={toggleStage ? {height:`${heightStage}px`} : null}
+            className={cx(css.floor, toggleFloor ? css.floorOpen : null)}
+            style={toggleFloor ? {height:`${heightFloor}px`} : null}
             key={index}
-            onClick={openStage}>
+            onClick={openFloor}>
             <ItemList
-              className={css.itemStage}
+              className={css.itemFloor}
               label={`Étage ${index + 1}`}
-              url={`/spaces/${index + 1}`}
+              url={`/floor/${index + 1}`}
               withIcon={true} />
             <li>
               <ul>
-                {stage.map((office, index) => {
+                {floor.map((room, index) => {
                   return (
                     <ItemList
-                      className={css.itemOffice}
-                      label={office.name}
-                      url={`/spaces/${office.id}`}
+                      className={css.itemRoom}
+                      label={`Salle ${room.name}`}
+                      url={`/room/${room.id_room}`}
                       withIcon={false}
                       key={index} />
                   )
