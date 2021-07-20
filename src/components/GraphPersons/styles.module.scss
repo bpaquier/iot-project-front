@@ -14,7 +14,7 @@ $cirlceSize: 160px;
   margin-top: 20px;
 
   svg {
-    color: map-get($primary-colors, "coral");
+    stroke: map-get($primary-colors, "coral");
   }
 
   .bg {

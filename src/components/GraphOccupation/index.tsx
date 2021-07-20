@@ -4,7 +4,7 @@ import css from "./styles.module.scss";
 const cx = classnames.bind(css);
 
 
-function GraphOccupation({persons = 90, capacity = 1800}) {
+function GraphOccupation({persons = 90, capacity = 100}) {
 
 	const [progression, setProgression] = useState(360);
 	const [occupation, setOccupation] = useState(0);
@@ -35,7 +35,6 @@ function GraphOccupation({persons = 90, capacity = 1800}) {
 			</div>
 			<svg>
 				<circle style={graphstyle} className={css.progress} cx="50%" cy="50%" r="60">
-					<div className={css.test}></div>
 				</circle>
 			</svg>
 		</div>
