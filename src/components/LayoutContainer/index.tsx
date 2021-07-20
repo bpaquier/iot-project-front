@@ -6,11 +6,16 @@ const cx = classnames.bind(css);
 interface IProps {
   title?: string;
   children?: any;
+  className?: any;
 }
 
-export default function layoutContainer({title, children}) {
-  return <main className={css.container}>
+export default function LayoutContainer({className, title, children}) {
+  return (
+  <main  className={css.main}>
     <h1 className={css.title}>{title}</h1>
-    {children}
+    <div className={className}>
+      {children}
+    </div>
   </main>
+  )
 }

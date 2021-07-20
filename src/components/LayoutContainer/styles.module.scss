@@ -1,9 +1,10 @@
-.container {
-  //width: 100vw;
-  max-height: 100vh;
+@import "styles/theme";
+
+.main {
   padding: 5rem;
 }
 
 .title {
   font-size: 30px;
+  margin-bottom: 36px;
 }
