@@ -17,8 +17,6 @@ function Building({ className, floorHovered, setFloorHovered }) {
   const { floor, setFloor } = useContext(FloorContext);
   const { page, setPage } = useContext(PageContext);
 
-  
-
   const printFloor = (floor: number) => {
     if (floor === 0) {
       return "Rez-de-chaussée";
@@ -26,9 +24,6 @@ function Building({ className, floorHovered, setFloorHovered }) {
       return `<span>${floor}</span> ème étage`;
     }
   };
-
-  console.log(FLOORS_DATA);
-  
 
   return (
     <div>
