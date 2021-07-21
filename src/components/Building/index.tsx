@@ -19,7 +19,8 @@ function Building({ className }) {
   useEffect(() => {
     // do something
     console.log(floorSelected);
-  }, [floorSelected]);
+}, [floorSelected])
+
 
   return (
     <div>
