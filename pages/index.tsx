@@ -13,6 +13,7 @@ import GraphOccupation from "~/components/GraphOccupation";
 import RoomNumber from "~/components/RoomNumber";
 import Building from "~/components/Building";
 import OccupationCard from "~/components/OccupationCard";
+import List from "~/components/List";
 
 export default function Home() {
   return (
@@ -33,7 +34,9 @@ export default function Home() {
         <Building className={css.buildingImg}></Building>
       </Card>
 
-      <Card className={css.alerts} title="Listes des personnes"></Card>
+      <Card className={css.alerts} title="Listes des personnes">
+        <List/>
+      </Card>
     </LayoutContainer>
   );
 }
