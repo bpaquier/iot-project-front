@@ -59,6 +59,62 @@ const roomsList = [
     capacity: 7,
     floor: 2,
   },
+  {
+    id_room: 7,
+    name: "401",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 6,
+    floor: 4,
+  },
+  {
+    id_room: 8,
+    name: "402",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 7,
+    floor: 4,
+  },
+  {
+    id_room: 9,
+    name: "501",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 7,
+    floor: 5,
+  },
+  {
+    id_room: 10,
+    name: "502",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 7,
+    floor: 5,
+  },
+  {
+    id_room: 11,
+    name: "601",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 7,
+    floor: 6,
+  },
+  {
+    id_room: 12,
+    name: "504",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 9,
+    floor: 5,
+  },
+  {
+    id_room: 12,
+    name: "602",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 9,
+    floor: 6,
+  },
+  {
+    id_room: 12,
+    name: "503",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 9,
+    floor: 5,
+  },
 ];
 
 // Utils for sorting rooms by floors
@@ -82,6 +138,7 @@ let floorsList = roomsList.reduce(groupByFloor, []);
 
 function SpacesList({ isOpen }: SpacesListProps) {
   const [activeFloor, setActiveFloor] = useState();
+  const [selectedItem, setSelectedItem] = useState("");
 
   const { floor, setFloor } = useContext(FloorContext);
   const { room, setRoom } = useContext(RoomContext);
@@ -95,14 +152,13 @@ function SpacesList({ isOpen }: SpacesListProps) {
           heightLabel: 40,
           heightRoom: 25,
         };
-        const heightFloor =
-          heightItem.heightLabel + floor.length * heightItem.heightRoom;
+        const heightFloor = heightItem.heightLabel + floor.length * heightItem.heightRoom;
 
         return (
           <ul
             className={cx(
               css.floor,
-              activeFloor == index ? css.floorOpen : null
+              activeFloor == index ? css.floorOpen : null,
             )}
             style={activeFloor == index ? { height: `${heightFloor}px` } : null}
             key={index}
@@ -114,10 +170,13 @@ function SpacesList({ isOpen }: SpacesListProps) {
               handleClick={() => {
                 setPage(SPACES_FLOOR);
                 setFloor(index + 1);
+                setSelectedItem(`etage-${index}`)
               }}
               withIcon={true}
               isOpen={activeFloor == index}
               openFloor={setActiveFloor}
+              generalKey={`etage-${index}`}
+              selectedItem={selectedItem}
             />
             <li>
               <ul>
@@ -130,8 +189,11 @@ function SpacesList({ isOpen }: SpacesListProps) {
                         setPage(SPACES_ROOM);
                         setFloor(index + 1);
                         setRoom(room.id_room);
+                        setSelectedItem(`salle-${index}-${room.name}`)
                       }}
                       withIcon={false}
+                      generalKey={`salle-${index}-${room.name}`}
+                      selectedItem={selectedItem}
                       key={index}
                     />
                   );

@@ -11,6 +11,8 @@ interface ListItemProps {
   label?: string;
   withIcon?: boolean;
   openFloor?: any;
+  selectedItem?: string;
+  generalKey?: string;
   index?: number;
   isOpen?: boolean;
   handleClick?: (e: any) => void;
@@ -22,13 +24,15 @@ function ItemList({
   handleClick,
   withIcon,
   openFloor,
+  selectedItem,
+  generalKey,
   index,
   isOpen,
 }: ListItemProps) {
 
   return (
     <li className={cx(css.item, className)}>
-      <a className={css.itemName} onClick={handleClick} title={label}>
+      <a className={cx(css.itemName, selectedItem == generalKey ? css.itemNameSelected : null)} onClick={handleClick} title={label}>
         {label}
       </a>
 
