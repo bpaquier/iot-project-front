@@ -10,14 +10,14 @@ interface IProps {
   direction?: directionType;
 }
 
-function Card({ className, children, title, direction }): any {
+function Card({ className, children, title, direction, center = true}): any {
   return (
     <div
-      className={cx(className, css.card)}
+      className={cx(className, css.card, {[css.center]: center})}
       style={{ flexDirection: direction || "column" }}
     >
       <h3>{title} </h3>
-      <div className={css.contentContainer}>{children}</div>
+      <div className={cx(css.contentContainer, {[css.center]: center} )}>{children}</div>
     </div>
   );
 }

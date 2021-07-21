@@ -17,23 +17,16 @@ export default function Spaces() {
     <LayoutContainer title="Occupation des bureaux" className={css.container}>
 
     
-    <Card className={css.building} title="Plan étage">
-      <Etages etage={1}></Etages>
-    </Card>
-
-    <Card className={css.bureau} title="Nombre de bureau">
+    <Card center={false} className={css.building} title="Plan étage">
+      <Etages className={css.test} etage={2}></Etages>
     </Card>
 
     <Card className={css.persons} title="Nombre personnes étage">
     </Card>
 
-      <Card className={css.building} title="Plan étage"></Card>
-
       <Card className={css.bureau} title="Nombre de bureau">
         <RoomNumber nbOfRooms={5} />
       </Card>
-
-      <Card className={css.persons} title="Nombre personnes étage"></Card>
 
       <Card className={css.occupation} title="Taux occupation"></Card>
     </LayoutContainer>
