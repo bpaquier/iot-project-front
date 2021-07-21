@@ -61,7 +61,7 @@ const roomsList = [
   },
 ];
 
-// Utils for sorting offices by stage
+// Utils for sorting rooms by floors
 function compareFloor(floor, item) {
   return floor === item.floor;
 }
