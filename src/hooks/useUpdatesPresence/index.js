@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export function usehUpdatedPresence() {
+export function useUpdatedPresence() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setIsLoading(true);
     axios({
-      baseURL: "http://localhost:5000",
+      baseURL: "https://fluxeo-back.herokuapp.com",
       url: "/presence",
       headers: {
         "Access-Control-Allow-Origin": "*",
