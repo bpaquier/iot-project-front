@@ -10,11 +10,9 @@ import { PageContext } from "~/contexts/pageContext";
 import { FloorContext } from "~/contexts/floorContext";
 import { RoomContext } from "~/contexts/roomContext";
 
-function Floor({ className }) {
+function Floor({ className, floor, room, setRoom }) {
   // Contexts
   const { page, setPage } = useContext(PageContext);
-  const { floor, setFloor } = useContext(FloorContext);
-  const { room, setRoom } = useContext(RoomContext);
 
   return (
     <div className={css.floorsContainer}>
@@ -24,7 +22,7 @@ function Floor({ className }) {
       >
         {ROOMS_DATA[floor].map(({ path, id }) => (
           <path
-            className={cx({ [css.visible]: room === id })}
+            className={cx({ [css.visible]: room && room === id })}
             onClick={() => {
               setRoom(id);
               setPage(SPACES_ROOM);
