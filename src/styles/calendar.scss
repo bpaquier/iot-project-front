@@ -1,0 +1,41 @@
+@import "./_theme.scss";
+
+input.DateInput_input__focused {
+  border-bottom: 2px solid map-get($primary-colors, "coral");
+}
+
+table.CalendarMonth_table {
+  margin-top: 12px;
+}
+
+td.CalendarDay {
+  vertical-align: middle;
+}
+
+td.CalendarDay__selected, 
+td.CalendarDay__selected:active, 
+td.CalendarDay__selected:hover {
+  background: map-get($primary-colors, "coral");
+  border: 1px double map-get($primary-colors, "coral");
+}
+
+td.CalendarDay__selected_span {
+  background: rgba(map-get($primary-colors, "melon"), 0.8);
+  border: 1px double map-get($primary-colors, "melon");
+}
+
+td.CalendarDay__selected_span:hover {
+  background: map-get($primary-colors, "coral");
+  border: 1px double map-get($primary-colors, "coral");
+}
+
+td.CalendarDay__hovered_span,
+td.CalendarDay__hovered_span:hover {
+  background: map-get($primary-colors, "melon");
+  border: 1px double map-get($primary-colors, "coral");
+  color: #000;
+}
+
+button.DayPickerKeyboardShortcuts_show__bottomRight::before {
+  display: none;
+}
