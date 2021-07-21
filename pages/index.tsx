@@ -11,25 +11,29 @@ import Card from "~/components/Card";
 import GraphPersons from "~/components/GraphPersons";
 import GraphOccupation from "~/components/GraphOccupation";
 import RoomNumber from "~/components/RoomNumber";
+import Building from "~/components/Building";
+import OccupationCard from "~/components/OccupationCard";
 
 export default function Home() {
   return (
-    <div className={css.container}>
-      <LayoutContainer title="Dashboard">
-        <main className={css.main}></main>
-      </LayoutContainer>
-      <Card className={css.bureau}>
-        <RoomNumber></RoomNumber>
+    <LayoutContainer title="Accueil" className={css.container}>
+      {/* <Card className={css.bureau} title="Nombre de bureau">
+          <RoomNumber></RoomNumber>
+        </Card> */}
+
+      <Card className={css.occupation} title="Occupation du bâtiment">
+        <OccupationCard />
       </Card>
 
-      <Card className={css.bureau} title="Nombre de personne dans l'étage">
-        <GraphPersons/>
+      <Card className={css.persons} title="Nombre de personne dans l'étage">
+        <GraphPersons />
       </Card>
 
-      <Card className={css.bureau} title="Taux d’occupation de l’étage">
-        <GraphOccupation/>
+      <Card className={css.building} title="Image du batiment cliquable">
+        <Building className={css.buildingImg}></Building>
       </Card>
 
-    </div>
+      <Card className={css.alerts} title="Listes des personnes"></Card>
+    </LayoutContainer>
   );
 }

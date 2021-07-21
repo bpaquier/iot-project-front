@@ -1,15 +1,58 @@
 @import "styles/theme";
 
 .container {
-  display: flex;
+  display: grid;
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  
+  grid-template-columns: repeat(3, minmax(200px, auto));
+  grid-template-rows: repeat(3, 1fr);
+  
+  grid-template-areas: 
+  "building building alerts"
+  "building building alerts"
+  "bureau persons alerts";
 
-  padding: 4rem;
+  
+  @include from("l") {
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-areas: 
+                "bureau building  building building alerts alerts"
+                "persons building building building alerts alerts";
+
+  }
+  height: 90%;
+  max-width: calc(100vw - 6rem);
+  
 }
 
-.bureau {
+
+.bureau, .persons {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 327px;
-  height: 213px;
+  height: 100%;
+}
+
+.building {
+  height: 100%;
+  grid-area: building;
+  .buildingImg {
+    margin-top: 40px;
+  }
+}
+
+
+.alerts {
+  height: 100%;
+  grid-area: alerts;
+}
+
+.bureau {
+   grid-area: bureau;
+}
+
+.persons {
+  grid-area: persons;
 }

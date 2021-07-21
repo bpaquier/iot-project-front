@@ -2,17 +2,19 @@ import classnames from "classnames/bind";
 import css from "./styles.module.scss";
 const cx = classnames.bind(css);
 
+interface IProps {
+  nbOfRooms: number;
+}
 
-function RoomNumber() {
-
-  return <div 
-        >
-        <h3>Nombre de bureau</h3>
-        <div className={css.desk}>
-    <p className={css.deskCount}>5</p>
-    <p className={css.deskText}>Salles</p>
-  </div>
-  </div>
+function RoomNumber({ nbOfRooms }: IProps) {
+  return (
+    <div>
+      <div className={css.desk}>
+        <p className={css.deskCount}>{nbOfRooms}</p>
+        <p className={css.deskText}>Salles</p>
+      </div>
+    </div>
+  );
 }
 
 export default RoomNumber;

@@ -1,3 +1,5 @@
+@import "styles/theme";
+
 .searchBar {
   display: flex;
   align-items: center;
@@ -17,5 +19,5 @@
 }
 
 .red {
-  border: 1px solid red;
+  border: 1px solid map-get($primary-colors, "coral");
 }

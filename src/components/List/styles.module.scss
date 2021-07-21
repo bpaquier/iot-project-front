@@ -1,0 +1,75 @@
+@import "styles/theme";
+
+.card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  width: 327px;
+  height: 213px;
+
+  .headList {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  .headListSpearation{
+    border: none;
+    border-bottom: 1px solid map-get($neutral-colors, "athens-gray-1");
+    width: 100%;
+  }
+}
+
+.list {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  overflow-y: scroll;
+  color: map-get($neutral-colors, "bombay");
+  margin-top: 16px;
+}
+
+.list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: map-get($neutral-colors, "athens-gray");
+  border-radius: 10px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: map-get($neutral-colors, "athens-gray-1");
+  border-radius: 10px;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background: map-get($neutral-colors, "bombay");
+  border-radius: 10px;
+}
+
+.list::-webkit-scrollbar-thumb:active {
+  background: map-get($neutral-colors, "shuttle-gray");
+  border-radius: 10px;
+}
+
+.employes {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.employe {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: .8rem;
+  font-size: 12px;
+}
