@@ -10,6 +10,7 @@ import GraphIcon from "~/components/Svgs/GraphIcon";
 
 interface NavProps {
   page: string;
+  toggleListOfSpaces: any;
 }
 
 const cx = classnames.bind(css);
@@ -38,7 +39,7 @@ const navItems = [
   },
 ];
 
-function Nav({ page }: NavProps) {
+function Nav({ page, toggleListOfSpaces }: NavProps) {
   const [activeItem, setActiveItem] = useState(0);
   const [itemHeight, setItemHeight] = useState(0);
 
@@ -67,6 +68,10 @@ function Nav({ page }: NavProps) {
     getItemHeight();
   }, [page]);
 
+  const toggleMenu = (e) => {
+    toggleListOfSpaces(e);
+  };
+
   return (
     <div className={css.navBar}>
       <div className={css.mainIcon}>
@@ -78,17 +83,34 @@ function Nav({ page }: NavProps) {
         <div className={css.selector} style={selectorStyle()}></div>
 
         {navItems.map((navItem, index) => {
-          return (
-            <Link key={index} href={navItem.url}>
+          if (index !== 1) {
+            return (
+              <Link key={index} href={navItem.url}>
+                <a
+                  ref={item}
+                  className={cx(css.navIcon, { active: activeItem === index })}
+                  title={navItem.title}
+                >
+                  {navItem.icon}
+                </a>
+              </Link>
+            );
+          } else {
+            return (
               <a
+                key={index}
                 ref={item}
                 className={cx(css.navIcon, { active: activeItem === index })}
                 title={navItem.title}
+                onClick={(e) => {
+                  toggleMenu(e);
+                  setActiveItem(1);
+                }}
               >
                 {navItem.icon}
               </a>
-            </Link>
-          );
+            );
+          }
         })}
       </nav>
     </div>

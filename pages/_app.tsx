@@ -1,18 +1,28 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 import "~/styles/globals.scss";
 
 import Footer from "~/components/Footer";
 import Nav from "~/components/Nav";
 import Header from "~/components/Header";
+import SpacesList from "~/components/SpacesList";
 
 import PageContainer from "~/components/PageContainer";
 
 function MyApp({ Component, pageProps }: AppProps) {
   // Grab the current route
   const { pathname } = useRouter();
+
+  // Toggle spaces list
+  const [toggleOpen, setToggleOpen] = useState(false);
+
+  const toggleListOfSpaces = (e) => {
+    e.preventDefault();
+    setToggleOpen(!toggleOpen);
+  }
 
   return (
     <>
@@ -22,7 +32,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Nav page={pathname} />
+      <Nav page={pathname} toggleListOfSpaces={toggleListOfSpaces} />
+      <SpacesList isOpen={toggleOpen} />
       <PageContainer>
         <Component {...pageProps} />
       </PageContainer>
