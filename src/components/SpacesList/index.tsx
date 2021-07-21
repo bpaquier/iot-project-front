@@ -1,7 +1,10 @@
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
-import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+
+import ChevronIcon from "~/components/Svgs/ChevronIcon"
+import ItemList from "~/components/ItemList"
 
 const cx = classnames.bind(css);
 
@@ -50,7 +53,6 @@ function groupByStage(memo, item) {
 }
 
 let stagesList = officesList.reduce(groupByStage, []);
-console.log(stagesList);
 
 function SpacesList() {
 
@@ -59,18 +61,18 @@ function SpacesList() {
       <h3 className={css.title}>étages</h3>
       {stagesList.map((stage, index) => {
         return (
-          <div key={index}>
-            <span>étage {index + 1}</span>
-            <ul>
-              {stage.map((office, index) => {
-                return (
-                  <li key={index}>
-                    <Link href={`/exemple/${office.id}`}>{office.name}</Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
+          <ul className={css.stage} key={index}>
+            <ItemList style="css.itemStage" label={`Étage ${index + 1}`} url={`/stages`} withIcon={true} />
+            <li>
+              <ul>
+                {stage.map((office, index) => {
+                  return (
+                    <ItemList style="css.itemOffice" label={office.name} url={`/exemple/${office.id}`} withIcon={false} />
+                  )
+                })}
+              </ul>
+            </li>
+          </ul>
         )
       })}
     </div>
