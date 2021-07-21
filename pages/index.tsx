@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useState } from "react";
 
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
@@ -8,14 +9,14 @@ import SearchBar from "~/components/SearchBar";
 
 import LayoutContainer from "~/components/LayoutContainer";
 import Card from "~/components/Card";
-import GraphPersons from "~/components/GraphPersons";
-import GraphOccupation from "~/components/GraphOccupation";
-import RoomNumber from "~/components/RoomNumber";
+
 import Building from "~/components/Building";
 import FluxeoPieChart from "~/components/FluxeoPieChart";
 import OccupationCard from "~/components/OccupationCard";
 
 export default function Home() {
+  const [floorHovered, setFloorHovered] = useState(null);
+
   return (
     <LayoutContainer title="Accueil" className={css.container}>
       {/* <Card className={css.bureau} title="Nombre de bureau">
@@ -27,11 +28,15 @@ export default function Home() {
       </Card>
 
       <Card className={css.persons} title="Nombre de personne dans l'étage">
-        <FluxeoPieChart activeFloor={0} />
+        <FluxeoPieChart activeFloor={floorHovered} />
       </Card>
 
       <Card className={css.building} title="Image du batiment cliquable">
-        <Building className={css.buildingImg}></Building>
+        <Building
+          floorHovered={floorHovered}
+          setFloorHovered={setFloorHovered}
+          className={css.buildingImg}
+        ></Building>
       </Card>
 
       <Card className={css.alerts} title="Listes des personnes"></Card>

@@ -7,7 +7,7 @@ const cx = classnames.bind(css);
 
 const data01 = [
   { name: "Etage 1", value: 68, floor: 1 },
-  { name: "Etage 2", value: 136, floor: 2 },
+  { name: "Etage 6", value: 136, floor: 6 },
 ];
 
 function renderLabel({ name }) {
@@ -32,6 +32,7 @@ export default function FluxeoPieChart(props: IProps) {
     <div className={css.container}>
       <PieChart width={400} height={400}>
         <Pie
+          isAnimationActive={false}
           dataKey="value"
           cx={200}
           cy={200}
