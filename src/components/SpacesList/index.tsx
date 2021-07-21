@@ -1,9 +1,7 @@
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
-import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import { useState } from "react";
 
-import ChevronIcon from "~/components/Svgs/ChevronIcon"
 import ItemList from "~/components/ItemList"
 
 interface SpacesListProps {
@@ -78,10 +76,12 @@ let floorsList = roomsList.reduce(groupByFloor, []);
 
 function SpacesList({isOpen}: SpacesListProps) {
 
-  const [toggleFloor, setToggleFloor] = useState(false)
+  const [toggleFloor, setToggleFloor] = useState(false);
+  const [activeFloor, setActiveFloor] = useState();
 
-  const openFloor = () => {
-    setToggleFloor(!toggleFloor)
+  const openFloor = (index) => {
+    setActiveFloor(index);
+    setToggleFloor(!toggleFloor);
   }
 
   return (
@@ -97,15 +97,15 @@ function SpacesList({isOpen}: SpacesListProps) {
 
         return (
           <ul
-            className={cx(css.floor, toggleFloor ? css.floorOpen : null)}
-            style={toggleFloor ? {height:`${heightFloor}px`} : null}
-            key={index}
-            onClick={openFloor}>
+            className={cx(css.floor, toggleFloor && (activeFloor == index) ? css.floorOpen : null)}
+            style={toggleFloor && (activeFloor == index) ? {height:`${heightFloor}px`} : null}
+            key={index}>
             <ItemList
               className={css.itemFloor}
               label={`Étage ${index + 1}`}
               url={`/floor/${index + 1}`}
-              withIcon={true} />
+              withIcon={true}
+              openFloor={openFloor(index)} />
             <li>
               <ul>
                 {floor.map((room, index) => {
