@@ -4,7 +4,6 @@ import classnames from "classnames/bind";
 import css from "./styles.module.scss";
 const cx = classnames.bind(css);
 
-import SearchBar from "~/components/SearchBar";
 import { useUpdatedPresence } from "~/hooks/useUpdatesPresence";
 import Ratio from "~/components/Ratio";
 
@@ -22,11 +21,11 @@ export default function Home() {
   const [filteredList, setFilteredList] = useState([]);
   const [dataForPie, setDataForPie] = useState([]);
 
-  // useEffect(() => {
-  //   if (!list.data) return;
-  //   const serializedList = list.data.filter((item) => item.is_present);
-  //   setFilteredList(serializedList);
-  // }, [list.data]);
+  useEffect(() => {
+    if (!list.data) return;
+    const serializedList = list.data.filter((item) => item.is_present);
+    setFilteredList(serializedList);
+  }, [list.data]);
 
   useEffect(() => {
     if (filteredList.length === 0 || !filteredList) return;

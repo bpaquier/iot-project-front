@@ -44,9 +44,13 @@ function MyApp({ Component, pageProps }: AppProps) {
           <RoomContextProvider>
             {!isLoading && roomsData && (
               <>
-                <Header />
+                <Header spaceData={roomsData} />
                 <Nav toggleListOfSpaces={toggleListOfSpaces} />
-                <SpacesList spaceData={roomsData} isOpen={toggleOpen} />
+                <SpacesList
+                  spaceData={roomsData}
+                  isOpen={toggleOpen}
+                  toggleIsOpen={setToggleOpen}
+                />
                 <PageContainer>
                   <Component {...pageProps} roomsData={roomsData} />
                 </PageContainer>

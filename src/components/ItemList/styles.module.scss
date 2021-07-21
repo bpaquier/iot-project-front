@@ -23,6 +23,7 @@
   font-family: map-get($fonts, "title");
   font-size: 1.8rem;
   color: map-get($neutral-colors, "shuttle-gray");
+  padding: 3px 10px;
 }
 .itemName:hover {
   color: map-get($neutral-colors, "bright-gray");
@@ -31,7 +32,6 @@
   text-transform: uppercase;
 }
 .itemNameSelected {
-  padding: 3px 10px;
   border-radius: 20px;
   font-weight: bold;
   color: map-get($neutral-colors, "white");

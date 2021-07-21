@@ -1,6 +1,6 @@
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import { FloorContext } from "~/contexts/floorContext/index";
 import { RoomContext } from "~/contexts/roomContext/index";
@@ -14,6 +14,7 @@ import ItemList from "~/components/ItemList";
 interface SpacesListProps {
   isOpen: boolean;
   spaceData: any;
+  toggleIsOpen: (x: boolean) => void;
 }
 
 const cx = classnames.bind(css);
@@ -33,7 +34,6 @@ function groupByFloor(data) {
 
   newArr.forEach((floor) => {
     floor.sort((a: any, b: any): any => {
-      console.log(parseFloat(a.name), parseFloat(b.name));
       return parseFloat(a.name) - parseFloat(b.name);
     });
   });
@@ -41,7 +41,7 @@ function groupByFloor(data) {
   return newArr;
 }
 
-function SpacesList({ isOpen, spaceData }: SpacesListProps) {
+function SpacesList({ isOpen, spaceData, toggleIsOpen }: SpacesListProps) {
   const [activeFloor, setActiveFloor] = useState();
   const [selectedItem, setSelectedItem] = useState("");
   const { floor, setFloor } = useContext(FloorContext);
@@ -58,16 +58,23 @@ function SpacesList({ isOpen, spaceData }: SpacesListProps) {
     }
   };
 
+  useEffect(() => {
+    const isOnPageFloorOrRoom = page === SPACES_FLOOR || page === SPACES_ROOM;
+    if (!isOnPageFloorOrRoom) {
+      toggleIsOpen(false);
+    }
+  }, [page]);
+
   return (
     <div className={cx(css.spacesMenu, isOpen ? css.spacesMenuOpen : null)}>
       <h3 className={css.title}>étages</h3>
-      {floorsList.map((floor, index) => {
+      {floorsList.map((f, index) => {
         const heightItem = {
           heightLabel: 40,
           heightRoom: 25,
         };
         const heightFloor =
-          heightItem.heightLabel + floor.length * heightItem.heightRoom;
+          heightItem.heightLabel + f.length * heightItem.heightRoom;
 
         return (
           <ul
@@ -85,31 +92,31 @@ function SpacesList({ isOpen, spaceData }: SpacesListProps) {
               handleClick={() => {
                 setPage(SPACES_FLOOR);
                 setFloor(index);
-                setSelectedItem(`etage-${index}`);
               }}
               withIcon={true}
               isOpen={activeFloor == index}
               openFloor={setActiveFloor}
-              generalKey={`etage-${index}`}
-              selectedItem={selectedItem}
+              generalKey={f[0].floor}
+              selectedItem={floor}
+              isFloor={true}
             />
             <li>
               <ul>
-                {floor.map((room, index) => {
+                {f.map((r, index) => {
                   return (
                     <ItemList
                       className={css.itemRoom}
-                      label={`Salle ${room.name}`}
+                      label={`Salle ${r.name}`}
                       handleClick={() => {
                         setPage(SPACES_ROOM);
-                        setFloor(index);
-                        setRoom(room.id_room);
-                        setSelectedItem(`salle-${index}-${room.name}`);
+                        setFloor(r.floor);
+                        setRoom(r.id_room);
                       }}
                       withIcon={false}
-                      generalKey={`salle-${index}-${room.name}`}
-                      selectedItem={selectedItem}
+                      generalKey={r.id_room}
+                      selectedItem={room}
                       key={index}
+                      isFloor={false}
                     />
                   );
                 })}
