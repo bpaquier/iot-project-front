@@ -17,7 +17,7 @@ export default function DailyOccupancyChart({className, data}: DailyOccupancyCha
         <XAxis dataKey="date" />
         <YAxis />
         <Tooltip />
-        <Area type="monotone" dataKey="occupancy" stroke="#ed7270" fill="#ed7270" />
+        <Area type="monotone" dataKey="occupation" stroke="#ed7270" fill="#ed7270" />
       </AreaChart>
     </ResponsiveContainer>
   );

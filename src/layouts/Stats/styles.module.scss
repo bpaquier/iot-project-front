@@ -3,13 +3,11 @@
 .container {
   display: grid;
   grid-template-columns: 1fr;
-  // grid-template-rows: 48vw auto;
   column-gap: 28px;
   row-gap: 28px;
 
   @include from("m") {
     grid-template-columns: 1fr 1fr;
-    // grid-template-rows: 48vw auto;
   }
 
   @include from ("desktop") {
@@ -41,4 +39,19 @@
 .inputLabel {
   margin-bottom: 8px;
   font-size: 12px;
+}
+
+.listContainer {
+  position: relative;
+  height: 320px;
+
+  @include from("desktop") {
+    height: auto;
+  }
+
+  .list {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 }
