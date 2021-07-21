@@ -1,22 +1,18 @@
 @import "styles/theme";
 
-@import "styles/theme";
-
-
-.etagesContainer {
+.floorsContainer {
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.etages {
-    background-size: cover;
-    font-family: map-get($fonts, "title");
-    width: 90%;
-    margin-left: 5%;
+.floors {
+  background-size: cover;
+  font-family: map-get($fonts, "title");
+  width: 90%;
+  margin-left: 5%;
 
-  
   path {
     stroke: map-get($primary-colors, "coral");
     stroke-width: 4;
@@ -25,15 +21,18 @@
     transition: opacity 0.2s;
     cursor: pointer;
   }
-  
+
   path:hover {
     opacity: 1;
   }
 }
 
+.visible {
+  opacity: 1 !important;
+}
 
 .text {
-  color: map-get($neutral-colors, "shuttle-gray");;
+  color: map-get($neutral-colors, "shuttle-gray");
   font-size: 20px;
   text-align: center;
   margin-top: 24px;
@@ -45,8 +44,9 @@
 }
 
 .first {
-    background-image: url('../../assets//images/etage1.png');
+  background-image: url("../../assets/images/etage1.png");
 }
 .second {
-    background-image: url('../../assets//images/etage2.png');
+  background-image: url("../../assets/images/etage2.png");
 }
+

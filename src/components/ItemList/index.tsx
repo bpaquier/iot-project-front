@@ -9,36 +9,39 @@ const cx = classnames.bind(css);
 interface ListItemProps {
   className?: string;
   label?: string;
-  url?: string;
   withIcon?: boolean;
   openFloor?: any;
+  selectedItem?: string;
+  generalKey?: string;
   index?: number;
   isOpen?: boolean;
+  handleClick?: (e: any) => void;
 }
 
 function ItemList({
   className,
   label,
-  url,
+  handleClick,
   withIcon,
   openFloor,
+  selectedItem,
+  generalKey,
   index,
   isOpen,
 }: ListItemProps) {
+
   return (
     <li className={cx(css.item, className)}>
-      <Link href={url}>
-        <a className={css.itemName} title={label}>
-          {label}
-        </a>
-      </Link>
+      <a className={cx(css.itemName, selectedItem == generalKey ? css.itemNameSelected : null)} onClick={handleClick} title={label}>
+        {label}
+      </a>
+
       {withIcon && (
         <div
-          className={css.chevronWrapper}
+          className={cx(css.chevronWrapper, isOpen ? css.chevronWrapperOpen : null)}
           onClick={() => {
             if (isOpen) {
               openFloor(null);
-              return;
             }
             openFloor(index);
           }}

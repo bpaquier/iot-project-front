@@ -1,6 +1,12 @@
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+import { FloorContext } from "~/contexts/floorContext/index";
+import { RoomContext } from "~/contexts/roomContext/index";
+import { PageContext } from "~/contexts/pageContext/index";
+
+import { HOME, STATS, SPACES_FLOOR, SPACES_ROOM } from "~/data/page";
 
 import ItemList from "~/components/ItemList";
 
@@ -53,9 +59,65 @@ const roomsList = [
     capacity: 7,
     floor: 2,
   },
+  {
+    id_room: 7,
+    name: "401",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 6,
+    floor: 4,
+  },
+  {
+    id_room: 8,
+    name: "402",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 7,
+    floor: 4,
+  },
+  {
+    id_room: 9,
+    name: "501",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 7,
+    floor: 5,
+  },
+  {
+    id_room: 10,
+    name: "502",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 7,
+    floor: 5,
+  },
+  {
+    id_room: 11,
+    name: "601",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 7,
+    floor: 6,
+  },
+  {
+    id_room: 12,
+    name: "504",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 9,
+    floor: 5,
+  },
+  {
+    id_room: 12,
+    name: "602",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 9,
+    floor: 6,
+  },
+  {
+    id_room: 12,
+    name: "503",
+    coordinates: { XMin: 50, XMax: 70, YMin: 20, YMax: 40 },
+    capacity: 9,
+    floor: 5,
+  },
 ];
 
-// Utils for sorting offices by stage
+// Utils for sorting rooms by floors
 function compareFloor(floor, item) {
   return floor === item.floor;
 }
@@ -76,6 +138,11 @@ let floorsList = roomsList.reduce(groupByFloor, []);
 
 function SpacesList({ isOpen }: SpacesListProps) {
   const [activeFloor, setActiveFloor] = useState();
+  const [selectedItem, setSelectedItem] = useState("");
+
+  const { floor, setFloor } = useContext(FloorContext);
+  const { room, setRoom } = useContext(RoomContext);
+  const { page, setPage } = useContext(PageContext);
 
   return (
     <div className={cx(css.spacesMenu, isOpen ? css.spacesMenuOpen : null)}>
@@ -85,14 +152,13 @@ function SpacesList({ isOpen }: SpacesListProps) {
           heightLabel: 40,
           heightRoom: 25,
         };
-        const heightFloor =
-          heightItem.heightLabel + floor.length * heightItem.heightRoom;
+        const heightFloor = heightItem.heightLabel + floor.length * heightItem.heightRoom;
 
         return (
           <ul
             className={cx(
               css.floor,
-              activeFloor == index ? css.floorOpen : null
+              activeFloor == index ? css.floorOpen : null,
             )}
             style={activeFloor == index ? { height: `${heightFloor}px` } : null}
             key={index}
@@ -100,11 +166,17 @@ function SpacesList({ isOpen }: SpacesListProps) {
             <ItemList
               className={css.itemFloor}
               label={`Étage ${index + 1}`}
-              url={`/floor/${index + 1}`}
               index={index}
+              handleClick={() => {
+                setPage(SPACES_FLOOR);
+                setFloor(index + 1);
+                setSelectedItem(`etage-${index}`)
+              }}
               withIcon={true}
               isOpen={activeFloor == index}
               openFloor={setActiveFloor}
+              generalKey={`etage-${index}`}
+              selectedItem={selectedItem}
             />
             <li>
               <ul>
@@ -113,8 +185,15 @@ function SpacesList({ isOpen }: SpacesListProps) {
                     <ItemList
                       className={css.itemRoom}
                       label={`Salle ${room.name}`}
-                      url={`/room/${room.id_room}`}
+                      handleClick={() => {
+                        setPage(SPACES_ROOM);
+                        setFloor(index + 1);
+                        setRoom(room.id_room);
+                        setSelectedItem(`salle-${index}-${room.name}`)
+                      }}
                       withIcon={false}
+                      generalKey={`salle-${index}-${room.name}`}
+                      selectedItem={selectedItem}
                       key={index}
                     />
                   );

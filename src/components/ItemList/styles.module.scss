@@ -14,10 +14,14 @@
   margin-left: auto;
   border: 1px solid map-get($neutral-colors, "athens-gray");
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.chevronWrapperOpen {
+  transform: rotate(90deg);
 }
 .itemName {
   font-family: map-get($fonts, "title");
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: map-get($neutral-colors, "shuttle-gray");
 }
 .itemName:hover {
@@ -25,4 +29,14 @@
 }
 .itemName::first-letter {
   text-transform: uppercase;
+}
+.itemNameSelected {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: map-get($neutral-colors, "white");
+  background-color:  map-get($primary-colors, "coral");
+}
+.itemNameSelected:hover {
+  color: map-get($neutral-colors, "white");
 }
