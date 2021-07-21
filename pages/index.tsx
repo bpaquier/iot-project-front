@@ -1,46 +1,35 @@
-import { useEffect } from "react";
-import Head from "next/head";
-import { useState } from "react";
-
 import classnames from "classnames/bind";
-import css from "./styles.module.scss";
-const cx = classnames.bind(css);
+import { useState, useContext } from "react";
 
-import SearchBar from "~/components/SearchBar";
+//Context
+import { PageContext } from "~/contexts/pageContext";
+import { FloorContext } from "~/contexts/floorContext";
+import { RoomContext } from "~/contexts/roomContext";
 
-import LayoutContainer from "~/components/LayoutContainer";
-import Card from "~/components/Card";
+// Components
+import Home from "~/layouts/Home";
+import SpacesFloor from "~/layouts/SpacesFloor";
+import SpacesRoom from "~/layouts/SpacesRoom";
+import Stats from "~/layouts/Stats";
 
-import Building from "~/components/Building";
-import FluxeoPieChart from "~/components/FluxeoPieChart";
-import OccupationCard from "~/components/OccupationCard";
+type Page = "home" | "stats" | "spaces";
+//Data
+import { HOME, STATS, SPACES_FLOOR, SPACES_ROOM } from "~/data/page";
 
-export default function Home() {
-  const [floorHovered, setFloorHovered] = useState(null);
-
-  return (
-    <LayoutContainer title="Accueil" className={css.container}>
-      {/* <Card className={css.bureau} title="Nombre de bureau">
-          <RoomNumber></RoomNumber>
-        </Card> */}
-
-      <Card className={css.occupation} title="Occupation du bâtiment">
-        <OccupationCard />
-      </Card>
-
-      <Card className={css.persons} title="Nombre de personne dans l'étage">
-        <FluxeoPieChart activeFloor={floorHovered} />
-      </Card>
-
-      <Card className={css.building} title="Image du batiment cliquable">
-        <Building
-          floorHovered={floorHovered}
-          setFloorHovered={setFloorHovered}
-          className={css.buildingImg}
-        ></Building>
-      </Card>
-
-      <Card className={css.alerts} title="Listes des personnes"></Card>
-    </LayoutContainer>
-  );
+export default function App() {
+  const { floor, setFloor } = useContext(FloorContext);
+  const { room, setRoom } = useContext(RoomContext);
+  const { page, setPage } = useContext(PageContext);
+  switch (page) {
+    case HOME:
+      return <Home />;
+    case SPACES_FLOOR:
+      return <SpacesFloor floor={floor} />;
+    case SPACES_ROOM:
+      return <SpacesRoom id_room={room} floor={floor} />;
+    case STATS:
+      return <Stats />;
+    default:
+      return <div>404</div>;
+  }
 }
