@@ -25,6 +25,7 @@ function ItemList({
   index,
   isOpen,
 }: ListItemProps) {
+
   return (
     <li className={cx(css.item, className)}>
       <Link href={url}>
@@ -34,7 +35,7 @@ function ItemList({
       </Link>
       {withIcon && (
         <div
-          className={css.chevronWrapper}
+          className={cx(css.chevronWrapper, isOpen ? css.chevronWrapperOpen : null)}
           onClick={() => {
             if (isOpen) {
               openFloor(null);

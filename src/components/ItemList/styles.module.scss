@@ -14,6 +14,10 @@
   margin-left: auto;
   border: 1px solid map-get($neutral-colors, "athens-gray");
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.chevronWrapperOpen {
+  transform: rotate(90deg);
 }
 .itemName {
   font-family: map-get($fonts, "title");
