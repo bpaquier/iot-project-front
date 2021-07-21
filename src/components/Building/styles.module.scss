@@ -1,13 +1,17 @@
 @import "styles/theme";
 
+.buildingContainer {
+  width: 100%;
+  max-height: 100%;
+}
+
 .building {
-    width: 600px;
-    background-image: url('../../assets//images/building.png');
-    background-size: cover;
-    max-width: 100%;
-    font-family: map-get($fonts, "title");
-  
- 
+  max-height: 100%;
+  max-width: 100%;
+  background-image: url("../../assets//images/building.png");
+  background-size: cover;
+  font-family: map-get($fonts, "title");
+
   path {
     stroke: map-get($primary-colors, "coral");
     stroke-width: 4;

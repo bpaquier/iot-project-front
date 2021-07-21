@@ -20,7 +20,7 @@ function Card({
 }: IProps) {
   return (
     <div
-      className={cx(className, css.card, { [css.center]: center })}
+      className={cx(className, css.card, { center })}
       style={{ flexDirection: direction || "column" }}
     >
       <h3>{title} </h3>
