@@ -19,8 +19,15 @@ import OccupationCard from "~/components/OccupationCard";
 import List from "~/components/CardList";
 
 export default function Home() {
-  const [floorHovered, setFloorHovered] = useState(null);
   const list = useUpdatedPresence();
+  const [floorHovered, setFloorHovered] = useState(null);
+  const [filteredList, setFilteredList] = useState([]);
+
+  useEffect(() => {
+    if (!list.data) return;
+    const serializedList = list.data.filter((item) => item.is_present);
+    setFilteredList(serializedList);
+  }, [list.data]);
 
   return (
     <LayoutContainer title="Accueil" className={css.container}>
@@ -47,7 +54,11 @@ export default function Home() {
         <FluxeoPieChart activeFloor={floorHovered} />
       </Card>
       <div className={css.listContainer}>
-        <List title="Liste des personnes" className={css.list} list={list} />
+        <List
+          title="Liste des personnes"
+          className={css.list}
+          list={filteredList}
+        />
       </div>
     </LayoutContainer>
   );

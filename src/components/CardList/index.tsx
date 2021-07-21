@@ -13,11 +13,10 @@ interface ListProps {
 }
 
 function List({ className, title, list }: ListProps) {
-  const { data } = list;
+  const data = list;
   const [employeesList, setEmployeesList] = useState([]);
   const [services, setServices] = useState([]);
   const [serviceSelected, setServiceSelected] = useState(null);
-  console.log(employeesList);
 
   useEffect(() => {
     if (!data) return;
@@ -66,7 +65,7 @@ function List({ className, title, list }: ListProps) {
               <span>
                 {employee.first_name} {employee.last_name}
               </span>
-              <span>{employee.service}</span>
+              <span className={css.service}>{employee.service}</span>
             </div>
           ))}
         </ul>
