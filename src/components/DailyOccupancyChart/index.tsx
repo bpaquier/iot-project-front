@@ -11,7 +11,7 @@ interface DailyOccupancyChartProps {
 
 export default function DailyOccupancyChart({className, data}: DailyOccupancyChartProps) {
   return (
-    <ResponsiveContainer className={cx(className)} width="99%" height="100%">
+    <ResponsiveContainer className={cx(className)} width="99%" height={360}>
       <AreaChart data={data} margin={{top: 40, right: 40, bottom: 20, left: 0}}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" />
