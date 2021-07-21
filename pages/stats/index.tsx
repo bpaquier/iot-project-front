@@ -24,8 +24,6 @@ export default function Stats() {
   function setRandomData(newStartDate = startDate, newEndDate = endDate) {
     if (newStartDate && newEndDate) {
       const data = [];
-      console.log('new start',newStartDate.toDate().toLocaleDateString())
-      console.log('new end',newEndDate.toDate().toLocaleDateString())
       const daysDiff = newEndDate.diff(newStartDate, 'days');
       const options = { day: 'numeric', month: 'short', year: 'numeric'};
 
