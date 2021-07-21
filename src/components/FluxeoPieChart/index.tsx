@@ -35,22 +35,22 @@ interface IProps {
 }
 
 export default function FluxeoPieChart(props: IProps) {
-  const { activeFloor } = props;
+  const { activeFloor, data } = props;
 
   return (
-    <Ratio ratio={1}>
+    <Ratio ratio={1} className={css.PieWrapper}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
             isAnimationActive={false}
             dataKey="value"
             outerRadius={80}
-            data={data01}
+            data={data}
             fill="#ED7270"
             label={renderLabel}
           >
             <LabelList dataKey="value" position="top" />
-            {data01.map((entry, i) => {
+            {data.map((entry, i) => {
               return (
                 <Cell
                   key={`cell-${i}`}

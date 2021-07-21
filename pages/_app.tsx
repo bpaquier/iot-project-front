@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                   toggleIsOpen={setToggleOpen}
                 />
                 <PageContainer>
-                  <Component {...pageProps} />
+                  <Component {...pageProps} roomsData={roomsData} />
                 </PageContainer>
                 <Footer />
               </>

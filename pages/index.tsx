@@ -15,7 +15,7 @@ type Page = "home" | "stats" | "spaces";
 //Data
 import { HOME, STATS, SPACES_FLOOR, SPACES_ROOM } from "~/data/page";
 
-export default function App() {
+export default function App({ roomsData }) {
   const { floor, setFloor } = useContext(FloorContext);
   const { room, setRoom } = useContext(RoomContext);
   const { page, setPage } = useContext(PageContext);
@@ -23,7 +23,7 @@ export default function App() {
     case HOME:
       return <Home />;
     case SPACES_FLOOR:
-      return <SpacesFloor floor={floor} />;
+      return <SpacesFloor floor={floor} roomsData={roomsData} />;
     case SPACES_ROOM:
       return <SpacesRoom id_room={room} floor={floor} />;
     case STATS:

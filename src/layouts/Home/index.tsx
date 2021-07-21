@@ -19,12 +19,32 @@ export default function Home() {
   const list = useUpdatedPresence();
   const [floorHovered, setFloorHovered] = useState(null);
   const [filteredList, setFilteredList] = useState([]);
+  const [dataForPie, setDataForPie] = useState([]);
 
   useEffect(() => {
     if (!list.data) return;
     const serializedList = list.data.filter((item) => item.is_present);
     setFilteredList(serializedList);
   }, [list.data]);
+
+  useEffect(() => {
+    if (filteredList.length === 0 || !filteredList) return;
+    const getFloors = list.data
+      .map((item) => item?.position?.floor)
+      .reduce(
+        (unique, item) => (unique?.includes(item) ? unique : [...unique, item]),
+        []
+      )
+      .filter((item) => item);
+
+    const floorsData = getFloors.map((floor) => ({
+      name: `Etage ${floor}`,
+      floor: parseInt(floor),
+      value: filteredList.filter((item) => item?.position?.floor == floor)
+        .length,
+    }));
+    setDataForPie(floorsData);
+  }, [filteredList]);
 
   return (
     <LayoutContainer title="Accueil" className={css.container}>
@@ -41,14 +61,14 @@ export default function Home() {
         className={cx(css.homeItem, css.occupation)}
         title="Occupation du bâtiment"
       >
-        <OccupationCard />
+        <OccupationCard quantity={filteredList?.length} />
       </Card>
 
       <Card
         className={cx(css.homeItem, css.persons)}
         title="Nombre de personne dans l'étage"
       >
-        <FluxeoPieChart activeFloor={floorHovered} />
+        <FluxeoPieChart activeFloor={floorHovered} data={dataForPie} />
       </Card>
       <div className={css.listContainer}>
         <List

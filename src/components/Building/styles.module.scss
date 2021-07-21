@@ -33,7 +33,13 @@
   margin-top: 24px;
   height: 40px;
   width: 100%;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   span {
+    margin-left: 5px;
     font-size: 30px;
     color: map-get($primary-colors, "coral");
   }
