@@ -10,6 +10,7 @@ import LayoutContainer from "~/components/LayoutContainer";
 import RoomNumber from "~/components/RoomNumber";
 import Card from "~/components/Card";
 import Floor from "~/components/Floor";
+import BusyTimesGraph from "~/components/BusyTimesGraph";
 
 interface IProps {
   id_room: string;
@@ -35,7 +36,9 @@ export default function SpacesRoom({ id_room, floor }: IProps) {
         <RoomNumber nbOfRooms={5} />
       </Card>
 
-      <Card className={css.occupation} title="Taux occupation"></Card>
+      <Card className={css.occupation} title="Fréquentation">
+        <BusyTimesGraph />
+      </Card>
     </LayoutContainer>
   );
 }

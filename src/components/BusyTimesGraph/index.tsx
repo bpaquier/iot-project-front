@@ -12,7 +12,7 @@ function BusyTimesGraph() {
 
   // States
   const [activeDay, setActiveDay] = useState(0);
-  const [selectedData, setSelectedData] = useState(null);
+  const [selectedData, setSelectedData] = useState(1);
 
   // Functions
   const getDaysPosition = () => {
@@ -44,6 +44,10 @@ function BusyTimesGraph() {
     getDaysPosition();
     getInitialData();
   }, []);
+
+  useEffect(() => {
+    console.log({ selectedData, activeDay });
+  }, [selectedData, activeDay]);
 
   return (
     <div className={css.container}>
