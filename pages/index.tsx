@@ -12,6 +12,7 @@ import GraphPersons from "~/components/GraphPersons";
 import GraphOccupation from "~/components/GraphOccupation";
 import RoomNumber from "~/components/RoomNumber";
 import Building from "~/components/Building";
+import FluxeoPieChart from "~/components/FluxeoPieChart";
 import OccupationCard from "~/components/OccupationCard";
 
 export default function Home() {
@@ -26,7 +27,7 @@ export default function Home() {
       </Card>
 
       <Card className={css.persons} title="Nombre de personne dans l'étage">
-        <GraphPersons />
+        <FluxeoPieChart activeFloor={0} />
       </Card>
 
       <Card className={css.building} title="Image du batiment cliquable">
