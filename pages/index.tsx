@@ -5,8 +5,6 @@ import classnames from "classnames/bind";
 import css from "./styles.module.scss";
 const cx = classnames.bind(css);
 
-import { fetchUpdatedPresence } from "./api/getUpdatedPresence";
-
 import SearchBar from "~/components/SearchBar";
 
 import LayoutContainer from "~/components/LayoutContainer";
@@ -17,11 +15,6 @@ import RoomNumber from "~/components/RoomNumber";
 import Building from "~/components/Building";
 
 export default function Home() {
-  useEffect(() => {
-    fetchUpdatedPresence().then((rep) => console.log(rep.data));
-  });
-  fetchUpdatedPresence();
-
   return (
     <LayoutContainer title="Acceuil" className={css.container}>
       <Card className={css.bureau} title="Nombre de bureau">
