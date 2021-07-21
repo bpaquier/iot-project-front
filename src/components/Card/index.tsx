@@ -24,9 +24,7 @@ function Card({
       style={{ flexDirection: direction || "column" }}
     >
       <h3>{title} </h3>
-      <div className={cx(css.contentContainer, { [css.center]: center })}>
-        {children}
-      </div>
+      <div className={cx(css.contentContainer, { center })}>{children}</div>
     </div>
   );
 }

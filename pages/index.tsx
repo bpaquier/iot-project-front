@@ -21,19 +21,24 @@ export default function Home() {
 
   return (
     <LayoutContainer title="Accueil" className={css.container}>
-      {/* <Card className={css.bureau} title="Nombre de bureau">
-          <RoomNumber></RoomNumber>
-        </Card> */}
-
-      <Card className={css.occupation} title="Occupation du bâtiment">
+      <Card
+        className={cx(css.homeItem, css.occupation)}
+        title="Occupation du bâtiment"
+      >
         <OccupationCard />
       </Card>
 
-      <Card className={css.persons} title="Nombre de personne dans l'étage">
+      <Card
+        className={cx(css.homeItem, css.persons)}
+        title="Nombre de personne dans l'étage"
+      >
         <FluxeoPieChart activeFloor={floorHovered} />
       </Card>
 
-      <Card className={css.building} title="Image du batiment cliquable">
+      <Card
+        className={cx(css.homeItem, css.building)}
+        title="Image du batiment cliquable"
+      >
         <Building
           floorHovered={floorHovered}
           setFloorHovered={setFloorHovered}
@@ -41,8 +46,11 @@ export default function Home() {
         ></Building>
       </Card>
 
-      <Card className={css.alerts} title="Listes des personnes">
-        <List/>
+      <Card
+        className={cx(css.homeItem, css.alerts)}
+        title="Listes des personnes"
+      >
+        <List />
       </Card>
     </LayoutContainer>
   );

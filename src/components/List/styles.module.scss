@@ -5,8 +5,7 @@
   position: relative;
   flex-direction: column;
   align-items: center;
-  width: 327px;
-  height: 213px;
+  width: 100%;
 
   .headList {
     display: flex;
@@ -19,7 +18,7 @@
     font-size: 16px;
   }
 
-  .headListSpearation{
+  .headListSpearation {
     border: none;
     border-bottom: 1px solid map-get($neutral-colors, "athens-gray-1");
     width: 100%;
@@ -70,6 +69,6 @@
 .employe {
   display: flex;
   justify-content: space-between;
-  padding-bottom: .8rem;
+  padding-bottom: 0.8rem;
   font-size: 1.2rem;
 }

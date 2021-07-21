@@ -1,8 +1,17 @@
 import React, { useState } from "react";
-import { PieChart, Pie, Tooltip, Cell, LabelList, Label } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Tooltip,
+  Cell,
+  LabelList,
+  Label,
+  ResponsiveContainer,
+} from "recharts";
 
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
+import Ratio from "~/components/Ratio";
 const cx = classnames.bind(css);
 
 const data01 = [
@@ -29,31 +38,31 @@ export default function FluxeoPieChart(props: IProps) {
   const { activeFloor } = props;
 
   return (
-    <div className={css.container}>
-      <PieChart width={400} height={400}>
-        <Pie
-          isAnimationActive={false}
-          dataKey="value"
-          cx={200}
-          cy={200}
-          outerRadius={80}
-          data={data01}
-          fill="#ED7270"
-          label={renderLabel}
-        >
-          <LabelList dataKey="value" position="top" />
-          {data01.map((entry, i) => {
-            return (
-              <Cell
-                key={`cell-${i}`}
-                fill={activeFloor === entry.floor ? "#ED7270" : "#DFE1E6"}
-              />
-            );
-          })}
-        </Pie>
+    <Ratio ratio={1}>
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            isAnimationActive={false}
+            dataKey="value"
+            outerRadius={80}
+            data={data01}
+            fill="#ED7270"
+            label={renderLabel}
+          >
+            <LabelList dataKey="value" position="top" />
+            {data01.map((entry, i) => {
+              return (
+                <Cell
+                  key={`cell-${i}`}
+                  fill={activeFloor === entry.floor ? "#ED7270" : "#DFE1E6"}
+                />
+              );
+            })}
+          </Pie>
 
-        <Tooltip />
-      </PieChart>
-    </div>
+          <Tooltip />
+        </PieChart>
+      </ResponsiveContainer>
+    </Ratio>
   );
 }
