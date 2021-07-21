@@ -1,25 +1,47 @@
 @import "styles/theme";
 
 .card {
+  background: map-get($primary-colors, "background");
+  @include shadow;
+  padding: 2rem;
+  border-radius: 1.5rem;
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: center;
-  width: 327px;
-  height: 213px;
+  width: 100%;
 
   .headList {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
   }
 
-  h3 {
+  .title {
+    //border-bottom: 1px solid map-get($neutral-colors, "athens-gray-1");
+    font-family: map-get($fonts, "title");
     font-size: 16px;
+    color: map-get($neutral-colors, "bombay");
+    top: 3.5rem;
+    width: auto;
+    text-align: center;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 16px;
   }
 
-  .headListSpearation{
+  .select {
+    margin-bottom: 16px;
+    border: none;
+    outline: none;
+    border: 2px solid map-get($neutral-colors, "bombay");
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: map-get($neutral-colors, "bombay");
+  }
+  .headListSpearation {
     border: none;
     border-bottom: 1px solid map-get($neutral-colors, "athens-gray-1");
     width: 100%;
@@ -33,7 +55,6 @@
   display: flex;
   overflow-y: scroll;
   color: map-get($neutral-colors, "bombay");
-  margin-top: 16px;
 }
 
 .list::-webkit-scrollbar {
@@ -64,12 +85,16 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .employe {
   display: flex;
   justify-content: space-between;
-  padding-bottom: .8rem;
-  font-size: 12px;
+  padding-bottom: 0.8rem;
+  font-size: 1.2rem;
+
+  .service {
+    text-align: right;
+  }
 }

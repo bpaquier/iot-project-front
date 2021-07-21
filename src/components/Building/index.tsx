@@ -26,7 +26,7 @@ function Building({ className, floorHovered, setFloorHovered }) {
   };
 
   return (
-    <div>
+    <div className={css.buildingContainer}>
       <svg viewBox="0 0 1224 838" className={cx(css.building, className)}>
 
       {FLOORS_DATA.map(({ path, id }) => (

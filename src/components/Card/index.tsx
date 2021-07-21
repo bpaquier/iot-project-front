@@ -20,13 +20,11 @@ function Card({
 }: IProps) {
   return (
     <div
-      className={cx(className, css.card, { [css.center]: center })}
+      className={cx(className, css.card, { center })}
       style={{ flexDirection: direction || "column" }}
     >
       <h3>{title} </h3>
-      <div className={cx(css.contentContainer, { [css.center]: center })}>
-        {children}
-      </div>
+      <div className={cx(css.contentContainer, { center })}>{children}</div>
     </div>
   );
 }

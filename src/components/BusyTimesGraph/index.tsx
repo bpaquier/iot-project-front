@@ -46,7 +46,7 @@ function BusyTimesGraph() {
   }, []);
 
   useEffect(() => {
-    console.log({ selectedData, activeDay });
+    //console.log({ selectedData, activeDay });
   }, [selectedData, activeDay]);
 
   return (

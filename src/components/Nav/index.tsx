@@ -98,6 +98,7 @@ function Nav({ toggleListOfSpaces, listIsOpen }: NavProps) {
           if (index !== 1) {
             return (
               <a
+                key={index}
                 onClick={() => setPage(navItem.page)}
                 ref={item}
                 className={cx(css.navIcon, { active: activeItem === index })}
