@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <Nav toggleListOfSpaces={toggleListOfSpaces} />
                 <SpacesList spaceData={roomsData} isOpen={toggleOpen} />
                 <PageContainer>
-                  <Component {...pageProps} />
+                  <Component {...pageProps} roomsData={roomsData} />
                 </PageContainer>
                 <Footer />
               </>

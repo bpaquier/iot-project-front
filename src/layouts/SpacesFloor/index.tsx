@@ -5,6 +5,7 @@ import css from "./styles.module.scss";
 const cx = classnames.bind(css);
 
 import { RoomContext } from "~/contexts/roomContext";
+import { useFetchRooms } from "~/hooks/useFetchRooms";
 
 import LayoutContainer from "~/components/LayoutContainer";
 import RoomNumber from "~/components/RoomNumber";
@@ -17,13 +18,23 @@ import { useUpdatedPresence } from "~/hooks/useUpdatesPresence";
 
 interface IProps {
   floor: number;
+  roomsData?: any;
 }
 
-export default function SpacesRoom({ floor }: IProps) {
+export default function SpacesRoom({ floor, roomsData }: IProps) {
   const { room, setRoom } = useContext(RoomContext);
   const [filteredList, setFilteredList] = useState([]);
   const [capacity, setCapacity] = useState(null);
   const { data } = useUpdatedPresence();
+
+  useEffect(() => {
+    if (!roomsData) return;
+    const floorCapacity = roomsData
+      .filter((room) => room.floor === floor)
+      .map((item) => item.capacity)
+      .reduce((a, b) => a + b, 0);
+    setCapacity(floorCapacity);
+  }, [roomsData]);
 
   useEffect(() => {
     if (!data) return;
@@ -55,7 +66,7 @@ export default function SpacesRoom({ floor }: IProps) {
         ></Floor>
       </Card>
       <Card className={css.persons} title="Nombre personnes étage">
-        <GraphPersons persons={filteredList?.length} />
+        <GraphPersons persons={filteredList?.length} capacity={capacity} />
       </Card>
 
       <Card className={css.bureau} title="Nombre de bureau">
