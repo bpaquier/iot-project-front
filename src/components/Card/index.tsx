@@ -8,16 +8,25 @@ interface IProps {
   children?: React.ReactNode;
   title?: string;
   direction?: directionType;
+  center?: boolean;
 }
 
-function Card({ className, children, title, direction, center = true}): any {
+function Card({
+  className,
+  children,
+  title,
+  direction,
+  center = true,
+}: IProps) {
   return (
     <div
-      className={cx(className, css.card, {[css.center]: center})}
+      className={cx(className, css.card, { [css.center]: center })}
       style={{ flexDirection: direction || "column" }}
     >
       <h3>{title} </h3>
-      <div className={cx(css.contentContainer, {[css.center]: center} )}>{children}</div>
+      <div className={cx(css.contentContainer, { [css.center]: center })}>
+        {children}
+      </div>
     </div>
   );
 }

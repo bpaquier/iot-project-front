@@ -1,6 +1,12 @@
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+import { FloorContext } from "~/contexts/floorContext/index";
+import { RoomContext } from "~/contexts/roomContext/index";
+import { PageContext } from "~/contexts/pageContext/index";
+
+import { HOME, STATS, SPACES_FLOOR, SPACES_ROOM } from "~/data/page";
 
 import ItemList from "~/components/ItemList";
 
@@ -55,7 +61,7 @@ const roomsList = [
   },
 ];
 
-// Utils for sorting offices by stage
+// Utils for sorting rooms by floors
 function compareFloor(floor, item) {
   return floor === item.floor;
 }
@@ -76,6 +82,10 @@ let floorsList = roomsList.reduce(groupByFloor, []);
 
 function SpacesList({ isOpen }: SpacesListProps) {
   const [activeFloor, setActiveFloor] = useState();
+
+  const { floor, setFloor } = useContext(FloorContext);
+  const { room, setRoom } = useContext(RoomContext);
+  const { page, setPage } = useContext(PageContext);
 
   return (
     <div className={cx(css.spacesMenu, isOpen ? css.spacesMenuOpen : null)}>
@@ -100,8 +110,11 @@ function SpacesList({ isOpen }: SpacesListProps) {
             <ItemList
               className={css.itemFloor}
               label={`Étage ${index + 1}`}
-              url={`/floor/${index + 1}`}
               index={index}
+              handleClick={() => {
+                setPage(SPACES_FLOOR);
+                setFloor(index + 1);
+              }}
               withIcon={true}
               isOpen={activeFloor == index}
               openFloor={setActiveFloor}
@@ -113,7 +126,11 @@ function SpacesList({ isOpen }: SpacesListProps) {
                     <ItemList
                       className={css.itemRoom}
                       label={`Salle ${room.name}`}
-                      url={`/room/${room.id_room}`}
+                      handleClick={() => {
+                        setPage(SPACES_ROOM);
+                        setFloor(index + 1);
+                        setRoom(room.id_room);
+                      }}
                       withIcon={false}
                       key={index}
                     />
