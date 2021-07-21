@@ -12,7 +12,6 @@ import GraphIcon from "~/components/Svgs/GraphIcon";
 
 interface NavProps {
   toggleListOfSpaces: any;
-  listIsOpen: boolean;
 }
 
 const cx = classnames.bind(css);
@@ -41,7 +40,7 @@ const navItems = [
   },
 ];
 
-function Nav({ toggleListOfSpaces, listIsOpen }: NavProps) {
+function Nav({ toggleListOfSpaces }: NavProps) {
   //State
   const [activeItem, setActiveItem] = useState(0);
   const [itemHeight, setItemHeight] = useState(0);

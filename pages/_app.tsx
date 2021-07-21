@@ -1,7 +1,8 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import { useFetchRooms } from "~/hooks/useFetchRooms";
 
 import "~/styles/globals.scss";
 
@@ -21,10 +22,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   // Toggle spaces list
   const [toggleOpen, setToggleOpen] = useState(false);
 
+  const [roomsData, isLoading] = useFetchRooms();
+
   const toggleListOfSpaces = (e) => {
     e.preventDefault();
     setToggleOpen(!toggleOpen);
   };
+
+  useEffect(() => {}, [isLoading]);
 
   return (
     <>
@@ -37,13 +42,21 @@ function MyApp({ Component, pageProps }: AppProps) {
       <PageContextProvider>
         <FloorContextProvider>
           <RoomContextProvider>
-            <Header />
-            <Nav toggleListOfSpaces={toggleListOfSpaces} />
-            <SpacesList isOpen={toggleOpen} />
-            <PageContainer>
-              <Component {...pageProps} />
-            </PageContainer>
-            <Footer />
+            {!isLoading && roomsData && (
+              <>
+                <Header spaceData={roomsData} />
+                <Nav toggleListOfSpaces={toggleListOfSpaces} />
+                <SpacesList
+                  spaceData={roomsData}
+                  isOpen={toggleOpen}
+                  toggleIsOpen={setToggleOpen}
+                />
+                <PageContainer>
+                  <Component {...pageProps} />
+                </PageContainer>
+                <Footer />
+              </>
+            )}
           </RoomContextProvider>
         </FloorContextProvider>
       </PageContextProvider>

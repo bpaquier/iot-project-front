@@ -2,12 +2,16 @@
 
 .breadcrumb {
   display: flex;
-  width: 300px;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   font-size: 20px;
   font-family: map-get($fonts, "title");
   color: map-get($neutral-colors, "athens-gray-1");
+  gap: 2rem;
+
+  span {
+    white-space: nowrap;
+  }
 }
 
 .initial {
@@ -17,4 +21,3 @@
 .isActive {
   color: red;
 }
-
