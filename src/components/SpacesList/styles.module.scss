@@ -24,23 +24,23 @@
   padding-left: 2rem;
   color: map-get($neutral-colors, "bombay");
 }
-.stage {
+.floor {
   height: 25px;
   margin-bottom: 1.5rem;
   overflow: hidden;
   clip-path: inset(0px 0px -25px 0px);
   transition: clip-path 0s ease-out, height 200ms ease-out;
 }
-.stageOpen {
+.floorOpen {
   margin-bottom: 1.5rem;
   clip-path: inset(0px 0px 0px 0px);
   transition-delay: 200ms, 0s;
 }
-.itemStage {
+.itemFloor {
   margin-bottom: 1rem;
   padding-left: 2rem;
 }
-.itemOffice {
+.itemRoom {
   margin-bottom: 0.5rem;
   padding-left: 3rem;
 }

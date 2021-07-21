@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
 const cx = classnames.bind(css);
@@ -18,6 +19,9 @@ const data = Array.from({ length: 5 }, () => {
 export default function Stats() {
   const [floor, setFloor] = useState(1);
 
+=======
+export default function Stats() {
+>>>>>>> 16e71dd (feat/add new pages floor and room -- add routing on SpacesList)
   return (
     <LayoutContainer className={css.container} title="Analyse">
       <Card className={css.graphCard} title="Taux d’occupation par jour">
