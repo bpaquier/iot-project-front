@@ -10,7 +10,6 @@ import { SPACES_FLOOR } from "~/data/page";
 import { FloorContext } from "~/contexts/floorContext";
 import { PageContext } from "~/contexts/pageContext";
 
-
 function Building({ className, floorHovered, setFloorHovered }) {
   const [floorSelected, setFloorSelected] = useState(null);
 
@@ -28,8 +27,7 @@ function Building({ className, floorHovered, setFloorHovered }) {
   return (
     <div className={css.buildingContainer}>
       <svg viewBox="0 0 1224 838" className={cx(css.building, className)}>
-
-      {FLOORS_DATA.map(({ path, id }) => (
+        {FLOORS_DATA.map(({ path, id }) => (
           <path
             onClick={() => {
               setFloorSelected(id);
@@ -47,14 +45,18 @@ function Building({ className, floorHovered, setFloorHovered }) {
           />
         ))}
       </svg>
-      
-      {floorHovered !== null && (
-        <p
-          className={css.text}
-          dangerouslySetInnerHTML={{ __html: printFloor(floorHovered) }}
-        ></p>
-      )}
-      {floorHovered === null && (
+
+      {floorHovered !== null ? (
+        <p className={css.text}>
+          {floorHovered === 0 ? (
+            "Rez de chaussée"
+          ) : (
+            <>
+              Etage <span>{floorHovered}</span>
+            </>
+          )}
+        </p>
+      ) : (
         <p className={css.text}>Selectionnez un étage</p>
       )}
     </div>

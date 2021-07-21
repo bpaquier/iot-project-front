@@ -11,7 +11,7 @@
   grid-column-gap: 30px;
   grid-row-gap: 30px;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(6, minmax(25rem, 1fr));
+  grid-template-rows: auto repeat(4, minmax(25rem, 1fr));
   grid-template-areas:
     "building building building"
     "building building building"
@@ -21,7 +21,7 @@
 
   @include from("l") {
     grid-template-columns: repeat(3, minmax(21rem, 1fr));
-    grid-template-rows: repeat(3, minmax(33rem, 1fr));
+    grid-template-rows: auto minmax(33rem, 0.5fr);
 
     grid-template-areas:
       "building building building"
@@ -43,6 +43,9 @@
 .building {
   height: 100%;
   grid-area: building;
+  .card {
+    height: 100%;
+  }
 }
 
 .bureau {
