@@ -1,8 +1,10 @@
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
-import Link from "next/link";
+import { useContext } from "react";
 
+import { PageContext } from "~/contexts/pageContext";
 import ChevronIcon from "~/components/Svgs/ChevronIcon";
+import { SPACES_ROOM } from "~/data/page";
 
 const cx = classnames.bind(css);
 
@@ -15,6 +17,7 @@ interface ListItemProps {
   generalKey?: string;
   index?: number;
   isOpen?: boolean;
+  isFloor?: boolean;
   handleClick?: (e: any) => void;
 }
 
@@ -28,17 +31,33 @@ function ItemList({
   generalKey,
   index,
   isOpen,
+  isFloor,
 }: ListItemProps) {
+  console.log(generalKey, selectedItem);
+
+  const { page, setPage } = useContext(PageContext);
+
+  const isOnRoomPage = page === SPACES_ROOM;
+  const floorSelectedCondition = selectedItem == generalKey && !isOnRoomPage;
+  const roomSelectedCondition = selectedItem === generalKey && isOnRoomPage;
+  const condition = isFloor ? floorSelectedCondition : roomSelectedCondition;
 
   return (
     <li className={cx(css.item, className)}>
-      <a className={cx(css.itemName, selectedItem == generalKey ? css.itemNameSelected : null)} onClick={handleClick} title={label}>
+      <a
+        className={cx(css.itemName, condition ? css.itemNameSelected : null)}
+        onClick={handleClick}
+        title={label}
+      >
         {label}
       </a>
 
       {withIcon && (
         <div
-          className={cx(css.chevronWrapper, isOpen ? css.chevronWrapperOpen : null)}
+          className={cx(
+            css.chevronWrapper,
+            isOpen ? css.chevronWrapperOpen : null
+          )}
           onClick={() => {
             if (isOpen) {
               openFloor(null);

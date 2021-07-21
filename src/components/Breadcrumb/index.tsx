@@ -8,15 +8,22 @@ import { PageContext } from "~/contexts/pageContext";
 import { RoomContext } from "~/contexts/roomContext";
 import { FloorContext } from "~/contexts/floorContext";
 
+import { SPACES_ROOM, SPACES_FLOOR, HOME } from "~/data/page";
+
 import ArrowIcon from "~/components/Svgs/arrow-right";
 
 interface Breadcrumb {
   className?: string;
   step?: string;
   roomName?: string;
+  spaceData?: any;
 }
 
-function Breadcrumb({ step = "Etage 2", roomName = "Bureau 3" }: Breadcrumb) {
+function Breadcrumb({
+  step = "Etage 2",
+  roomName = "Bureau 3",
+  spaceData,
+}: Breadcrumb) {
   // State
   const [homeItem, setHomeItem] = useState(false);
   const [stepItem, setStepItem] = useState(false);
@@ -28,58 +35,64 @@ function Breadcrumb({ step = "Etage 2", roomName = "Bureau 3" }: Breadcrumb) {
   const { floor, setFloor } = useContext(FloorContext);
 
   const printFloor = (floor) => {
-    if (floor === undefined) return;
+    if (floor !== 0 && !floor) return;
     if (floor === 0) {
-      return `Rez-de-chaussée`;
+      return `RDC`;
     } else {
       return `Etage ${floor}`;
     }
   };
 
   const printRoom = (room_id) => {
-    if (room_id) {
-      return `Salle ${room_id}`;
+    const roomData = spaceData.filter((room) => room.id_room === room_id)[0];
+
+    if (roomData) {
+      return `Salle ${roomData.name}`;
     } else {
       return "";
     }
   };
 
+  const showRoom: boolean = room !== null && page !== SPACES_FLOOR;
+  const isOnPageFloorOrRoom = page === SPACES_FLOOR || page === SPACES_ROOM;
+
   return (
     <div className={css.breadcrumb}>
+      {/* Logo */}
       <h2
-        className={cx(css.initial, homeItem ? "isActive" : "")}
+        className={cx(css.initial, {
+          isActive: !isOnPageFloorOrRoom,
+        })}
         onClick={() => {
-          setHomeItem(true);
-          setStepItem(false);
-          setRoomItem(false);
+          setPage(HOME);
         }}
       >
         Fluxeo
       </h2>
-      <ArrowIcon />
-      <span
-        className={cx(css.initial, stepItem ? "isActive" : "")}
-        onClick={() => {
-          setHomeItem(false);
-          setStepItem(true);
-          setRoomItem(false);
-        }}
-      >
-        {" "}
-        {printFloor(floor)}
-      </span>
-      <ArrowIcon />
-      <span
-        className={cx(css.initial, roomItem ? "isActive" : "")}
-        onClick={() => {
-          setHomeItem(false);
-          setStepItem(false);
-          setRoomItem(true);
-        }}
-      >
-        {" "}
-        {printRoom(room)}
-      </span>
+      {/* {Breadcrumb} */}
+      {isOnPageFloorOrRoom && floor !== null && (
+        <>
+          <ArrowIcon />
+          <span
+            onClick={() => {
+              setPage(SPACES_FLOOR);
+            }}
+            className={cx(css.initial, { isActive: !showRoom })}
+          >
+            {" "}
+            {printFloor(floor)}
+          </span>
+          {showRoom && (
+            <>
+              <ArrowIcon />
+              <span className={cx(css.initial, { isActive: showRoom })}>
+                {" "}
+                {printRoom(room)}
+              </span>
+            </>
+          )}
+        </>
+      )}
     </div>
   );
 }
