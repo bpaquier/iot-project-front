@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import 'moment/locale/fr'
 import "react-dates/initialize";
 import { DateRangePicker } from "react-dates";
@@ -11,7 +11,11 @@ const cx = classnames.bind(css);
 
 import LayoutContainer from "~/components/LayoutContainer";
 import Card from "~/components/Card";
+import List from "~/components/CardList";
 import DailyOccupancyChart from "~/components/DailyOccupancyChart";
+import GraphOccupation from "~/components/GraphOccupation";
+
+import { useUpdatedPresence } from "~/hooks/useUpdatesPresence";
 
 export default function Stats() {
   function setRandomData(newStartDate = startDate, newEndDate = endDate) {
@@ -25,7 +29,7 @@ export default function Stats() {
         date.setDate(date.getDate() - i);
         data.unshift({
           date: date.toLocaleDateString('fr-FR', options),
-          occupancy: Math.floor(Math.random() * 100),
+          occupation: Math.floor(Math.random() * 100),
         });
       };
       
@@ -42,6 +46,16 @@ export default function Stats() {
     setEndDate(endDate);
     setData(setRandomData(startDate, endDate));
   }
+
+  const list = useUpdatedPresence();
+  const [floorHovered, setFloorHovered] = useState(null);
+  const [filteredList, setFilteredList] = useState([]);
+
+  useEffect(() => {
+    if (!list.data) return;
+    const serializedList = list.data.filter((item) => item.is_present);
+    setFilteredList(serializedList);
+  }, [list.data]);
 
   return (
     <LayoutContainer className={css.container} title="Analyse">
@@ -61,17 +75,18 @@ export default function Stats() {
             endDatePlaceholderText="Fin"
             numberOfMonths={1}
             small
+            openDirection={"up"}
             showDefaultInputIcon
             inputIconPosition="after"
             isOutsideRange={day => day.isAfter(moment())}
           />
         </div>
       </Card>
-      <Card className title="Centre d’alerte">
-        {/* Content */}
-      </Card>
+      <div className={css.listContainer}>
+        <List className={css.list} title="Liste des personnes" list={filteredList} />
+      </div>
       <Card className title="La semaine dernière">
-        {/* Content */}
+        <GraphOccupation />
       </Card>
     </LayoutContainer>
   );

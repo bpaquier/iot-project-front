@@ -31,9 +31,9 @@ td.CalendarDay__selected_span:hover {
 
 td.CalendarDay__hovered_span,
 td.CalendarDay__hovered_span:hover {
-  background: map-get($primary-colors, "melon");
-  border: 1px double map-get($primary-colors, "coral");
-  color: #000;
+  background: rgba(map-get($primary-colors, "melon"), 0.8);
+  border: 1px double map-get($primary-colors, "melon");
+  color: #fff;
 }
 
 button.DayPickerKeyboardShortcuts_show__bottomRight::before {
