@@ -1,17 +1,23 @@
+import classnames from "classnames/bind";
 import css from "./styles.module.scss";
+const cx = classnames.bind(css);
+
+import { useState } from "react";
 
 import LayoutContainer from "~/components/LayoutContainer";
 import Card from "~/components/Card";
 import DailyOccupancyChart from "~/components/DailyOccupancyChart";
 
-const data = Array.from({length: 5}, () => {
+const data = Array.from({ length: 5 }, () => {
   return {
-    date: 'date',
+    date: "date",
     occupancy: Math.floor(Math.random() * 100),
   };
 });
 
 export default function Stats() {
+  const [floor, setFloor] = useState(1);
+
   return (
     <LayoutContainer className={css.container} title="Analyse">
       <Card className={css.graphCard} title="Taux d’occupation par jour">
@@ -24,6 +30,5 @@ export default function Stats() {
         {/* Content */}
       </Card>
     </LayoutContainer>
-  
   );
 }
