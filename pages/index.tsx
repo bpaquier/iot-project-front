@@ -12,27 +12,28 @@ import GraphPersons from "~/components/GraphPersons";
 import GraphOccupation from "~/components/GraphOccupation";
 import RoomNumber from "~/components/RoomNumber";
 import Building from "~/components/Building";
+import OccupationCard from "~/components/OccupationCard";
 
 export default function Home() {
   return (
-      <LayoutContainer title="Acceuil" className={css.container}>
-    
-        <Card className={css.bureau} title="Nombre de bureau">
+    <LayoutContainer title="Accueil" className={css.container}>
+      {/* <Card className={css.bureau} title="Nombre de bureau">
           <RoomNumber></RoomNumber>
-        </Card>
+        </Card> */}
 
-        <Card className={css.persons} title="Nombre de personne dans l'étage">
-          <GraphPersons/>
-        </Card>
+      <Card className={css.occupation} title="Occupation du bâtiment">
+        <OccupationCard />
+      </Card>
 
-        <Card className={css.building} title="Image du batiment cliquable">
-           <Building className={css.buildingImg}></Building>
-        </Card>
+      <Card className={css.persons} title="Nombre de personne dans l'étage">
+        <GraphPersons />
+      </Card>
 
-        <Card className={css.alerts} title="Listes des personnes">
-        
-        </Card>
+      <Card className={css.building} title="Image du batiment cliquable">
+        <Building className={css.buildingImg}></Building>
+      </Card>
 
-      </LayoutContainer>
+      <Card className={css.alerts} title="Listes des personnes"></Card>
+    </LayoutContainer>
   );
 }
