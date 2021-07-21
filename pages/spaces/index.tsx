@@ -18,7 +18,7 @@ export default function Spaces() {
 
     
     <Card center={false} className={css.building} title="Plan étage">
-      <Etages className={css.test} etage={2}></Etages>
+      <Etages className={css.test} etage={1}></Etages>
     </Card>
 
     <Card className={css.persons} title="Nombre personnes étage">

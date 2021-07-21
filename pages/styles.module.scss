@@ -5,33 +5,46 @@
   grid-column-gap: 40px;
   grid-row-gap: 40px;
   
-  grid-template-columns: repeat(3, minmax(200px, auto));
+  height: 90%;
+  max-width: calc(100vw - 6rem);
+  
+  grid-template-columns: 80vw;
+  grid-template-rows: repeat(6, 1fr);
+  
+  grid-template-areas: 
+  "building"
+  "building"
+  "alerts"
+  "alerts"
+  "bureau"
+  "persons";
+
+
+  // PHONE > 500
+  @include from("s"){
+    display: grid;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   grid-template-rows: repeat(3, 1fr);
   
   grid-template-areas: 
   "building building alerts"
   "building building alerts"
   "bureau persons alerts";
+  }
 
-  
-  @include from("l") {
-      grid-template-columns: repeat(6, 1fr);
+  // DESKTOP > 1290
+  @include from("xl") {
+      grid-template-columns: 7fr;
       grid-template-rows: repeat(2, 1fr);
       grid-template-areas: 
-                "bureau building  building building alerts alerts"
-                "persons building building building alerts alerts";
+                "bureau building  building building alerts alerts alerts"
+                "persons building building building alerts alerts alerts";
 
   }
-  height: 90%;
-  max-width: calc(100vw - 6rem);
-  
 }
 
 
 .bureau, .persons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   height: 100%;
 }
 
@@ -47,6 +60,9 @@
 .alerts {
   height: 100%;
   grid-area: alerts;
+  @include from("s"){
+  min-width: 300px;
+}
 }
 
 .bureau {

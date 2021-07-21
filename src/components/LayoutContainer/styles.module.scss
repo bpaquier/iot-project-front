@@ -1,7 +1,14 @@
 @import "styles/theme";
 
 .main {
-  padding: 5rem;
+  padding: 1rem;
+
+  @include from("m"){
+    padding: 3rem;
+  }
+  @include from("l"){
+    padding: 5rem;
+  }
 }
 
 .title {
