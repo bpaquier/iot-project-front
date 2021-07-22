@@ -71,7 +71,7 @@ export default function SearchBar() {
       placeholder="Rechercher par nom, équipe..."
       autoComplete="off"
     />
-    {listItems.length > 0 &&
+    {listItems.length > 0 && isActive &&
       <div className={css.list}>
         {listItems}
       </div>
