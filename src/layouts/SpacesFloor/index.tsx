@@ -43,6 +43,9 @@ export default function SpacesRoom({ floor, roomsData }: IProps) {
       (item) => item?.position?.floor == floor
     );
     setFilteredList(serializedList);
+
+    console.log(filteredList.length + "liste filtrer");
+    
   }, [data, floor]);
 
   /**
