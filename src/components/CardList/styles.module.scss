@@ -90,10 +90,13 @@
 .employee {
   display: flex;
   justify-content: space-between;
-  padding: 0.8rem 0;
   font-size: 1.2rem;
   cursor: pointer;
+  padding: 1.2rem 0;
 
+  @include from("m"){
+    padding: 0.8rem 0;
+  }
   &:hover {
     color: map-get($primary-colors, "coral");
   }

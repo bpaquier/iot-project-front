@@ -5,8 +5,12 @@
   background-size: cover;
   font-family: map-get($fonts, "title");
   height: 100%;
-  width: auto;
+  width: 100%;
 
+  @include from("m"){
+    width: auto;
+  }
+  
   path {
     stroke: map-get($primary-colors, "coral");
     stroke-width: 4;
