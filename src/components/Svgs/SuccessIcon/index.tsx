@@ -15,7 +15,6 @@ export default function SuccessIcon() {
       />
       <mask
         id="mask0"
-        maskType="alpha"
         maskUnits="userSpaceOnUse"
         x="7"
         y="9"

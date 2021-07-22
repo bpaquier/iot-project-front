@@ -15,7 +15,6 @@ export default function InfoIcon() {
       />
       <mask
         id="mask0"
-        maskType="alpha"
         maskUnits="userSpaceOnUse"
         x="5"
         y="5"
