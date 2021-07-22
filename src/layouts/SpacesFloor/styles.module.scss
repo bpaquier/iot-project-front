@@ -6,6 +6,13 @@
   overflow-y: scroll;
 }
 
+.emptyContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
 .container {
   display: grid;
   grid-column-gap: 30px;
