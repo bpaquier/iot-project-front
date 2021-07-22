@@ -82,3 +82,8 @@
 .occupation {
   grid-area: occupation;
 }
+
+.emptyText {
+  font-size: 3rem;
+  color: map-get($neutral-colors, "bombay");
+}

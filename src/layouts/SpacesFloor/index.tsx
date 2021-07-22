@@ -45,6 +45,9 @@ export default function SpacesRoom({ floor, roomsData }: IProps) {
     setFilteredList(serializedList);
   }, [data, floor]);
 
+  /**
+   * @todo => filter dynamicly with floor is real in DB
+   */
   return (
     <LayoutContainer
       title="Occupation des bureaux"
@@ -84,7 +87,9 @@ export default function SpacesRoom({ floor, roomsData }: IProps) {
           </div>
         </>
       ) : (
-        <h2>no data here</h2>
+        <h2 className={css.emptyText}>
+          Nous n'avons pas encore de capteurs installés dans cet étage
+        </h2>
       )}
     </LayoutContainer>
   );

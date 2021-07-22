@@ -46,7 +46,6 @@ function BusyTimesGraph() {
   }, []);
 
   useEffect(() => {}, [selectedData, activeDay]);
-  console.log(dataGraph);
 
   return (
     <div className={css.containerBusyTime}>

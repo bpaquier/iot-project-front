@@ -30,9 +30,9 @@ function Floor({ className, floor, room, setRoom }) {
     >
       {ROOMS_DATA[floor].map(({ path, id, name }) => (
         <path
-          className={cx({ [css.visible]: room && room === name })}
+          className={cx({ [css.visible]: room && room === id })}
           onClick={() => {
-            setRoom(name);
+            setRoom(id);
             setPage(SPACES_ROOM);
           }}
           key={id}
