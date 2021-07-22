@@ -1,10 +1,12 @@
 @import "styles/theme";
+@import "styles/fonts";
 
 .container {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto repeat(3, 300px);
   grid-gap: 3rem;
+  font-family: 'HelveticaNeueRegular';
 
   @include from("m") {
     grid-template-columns: repeat(2, 1fr);
@@ -88,3 +90,4 @@
     height: 100%;
   }
 }
+
