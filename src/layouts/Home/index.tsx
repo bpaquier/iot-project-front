@@ -99,7 +99,6 @@ export default function Home() {
         <h2>Centre d'alertes</h2>
         <AlertsList alerts={alerts} removeAlert={removeAlert} />
       </div>
-
       <div className={css.listContainer}>
         <List
           title="Liste des personnes"
