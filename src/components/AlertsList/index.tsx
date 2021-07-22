@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import AlertItem from "~/components/AlertItem";
 
 import { IAlert } from "~/types";
+import { AnimatePresence, motion } from "framer-motion";
 const cx = classnames.bind(css);
 
 interface IProps {
@@ -15,6 +16,10 @@ interface IProps {
 function NoAlert() {
   return <h3 className={css.noAlert}>Vous n'avez pas d'alertes</h3>;
 }
+
+const MotionNoAlert = motion(NoAlert);
+
+const MotionAlertItem = motion(AlertItem);
 
 function AlertsList({ alerts, removeAlert }: IProps) {
   const [noAlertToDisplay, setNoAlertToDisplay] = useState(false);
@@ -29,15 +34,28 @@ function AlertsList({ alerts, removeAlert }: IProps) {
 
   return (
     <div className={css.container}>
-      {noAlertToDisplay ? (
-        <NoAlert />
-      ) : (
-        alerts.map((alert) => {
-          return (
-            <AlertItem key={alert.id} alert={alert} removeAlert={removeAlert} />
-          );
-        })
-      )}
+      <AnimatePresence>
+        {noAlertToDisplay ? (
+          <MotionNoAlert
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.2 } }}
+            exit={{ opacity: 0, transition: { duration: 0.3 } }}
+          />
+        ) : (
+          alerts.map((alert) => {
+            return (
+              <MotionAlertItem
+                key={alert.id}
+                alert={alert}
+                removeAlert={removeAlert}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 0.2 } }}
+                exit={{ opacity: 0, transition: { duration: 0.3 } }}
+              />
+            );
+          })
+        )}
+      </AnimatePresence>
     </div>
   );
 }
