@@ -1,32 +1,61 @@
 @import "styles/theme";
 .item {
-  color: white;
+  color: map-get($neutral-colors, "shuttle-gray");
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   box-sizing: border-box;
   position: absolute;
   top: 0;
+  font-size: 1.2rem;
   transition: transform 0.3s ease-out;
+  padding: 0.6rem 1.2rem;
+  gap: 0.6rem;
+  width: 100%;
+  border-radius: 1rem;
   &.success {
-    background-color: map-get($alerts-colors, "success-green");
-    border: 1px solid map-get($alerts-colors, "success-green-2");
+    background-color: map-get($alerts-colors, "success-green-2");
+    border: 1px solid map-get($alerts-colors, "success-green");
   }
   &.info {
-    background-color: map-get($alerts-colors, "information-blue");
-    border: 1px solid map-get($alerts-colors, "information-blue-2");
+    background-color: map-get($alerts-colors, "information-blue-2");
+    border: 1px solid map-get($alerts-colors, "information-blue");
   }
   &.warning {
-    background-color: map-get($alerts-colors, "warning-orange");
-    border: 1px solid map-get($alerts-colors, "warning-orange-2");
+    background-color: map-get($alerts-colors, "warning-orange-2");
+    border: 1px solid map-get($alerts-colors, "warning-orange");
   }
   &.error {
-    background-color: map-get($alerts-colors, "alert-red");
-    border: 1px solid map-get($alerts-colors, "alert-red-2");
+    background-color: map-get($alerts-colors, "alert-red-2");
+    border: 1px solid map-get($alerts-colors, "alert-red");
   }
 
   .icon {
   }
 
   .text {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .right {
+    cursor: pointer;
+    opacity: 0.8;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }

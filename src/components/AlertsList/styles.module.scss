@@ -1,7 +1,13 @@
 @import "styles/theme";
 .container {
-  height: 600px;
-  width: 300px;
-  background-color: beige;
+  height: 100%;
+  width: 100%;
   position: relative;
+
+  .noAlert {
+    font-size: 12px;
+    color: #a3a4a8;
+    text-align: center;
+    padding-top: 2rem;
+  }
 }
