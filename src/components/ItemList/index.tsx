@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 import { PageContext } from "~/contexts/pageContext";
 import ChevronIcon from "~/components/Svgs/ChevronIcon";
-import { SPACES_FLOOR, SPACES_ROOM } from "~/data/page";
+import { SPACES_ROOM } from "~/data/page";
 
 const cx = classnames.bind(css);
 
@@ -37,8 +37,7 @@ function ItemList({
   const { page, setPage } = useContext(PageContext);
 
   const isOnRoomPage = page === SPACES_ROOM;
-  const isOnFloorPage = page === SPACES_FLOOR;
-  const floorSelectedCondition = selectedItem == generalKey && isOnFloorPage;
+  const floorSelectedCondition = selectedItem == generalKey && !isOnRoomPage;
   const roomSelectedCondition = selectedItem === generalKey && isOnRoomPage;
   const condition = isFloor ? floorSelectedCondition : roomSelectedCondition;
 
@@ -59,10 +58,11 @@ function ItemList({
             isOpen ? css.chevronWrapperOpen : null
           )}
           onClick={() => {
-            if (isOpen) {
+            if (isOpen) {    
               openFloor(null);
+            } else {
+              openFloor(index);
             }
-            openFloor(index);
           }}
         >
           <ChevronIcon />

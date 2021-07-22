@@ -24,6 +24,7 @@ interface IProps {
 export default function SpacesRoom({ floor, roomsData }: IProps) {
   const { room, setRoom } = useContext(RoomContext);
   const [filteredList, setFilteredList] = useState([]);
+  const [floorList, setFloorList] = useState();
   const [capacity, setCapacity] = useState(null);
   const { data } = useUpdatedPresence();
 
@@ -34,7 +35,7 @@ export default function SpacesRoom({ floor, roomsData }: IProps) {
       .map((item) => item.capacity)
       .reduce((a, b) => a + b, 0);
     setCapacity(floorCapacity);
-  }, [roomsData]);
+  }, [floor]);
 
   useEffect(() => {
     if (!data) return;
@@ -42,43 +43,50 @@ export default function SpacesRoom({ floor, roomsData }: IProps) {
       (item) => item?.position?.floor == floor
     );
     setFilteredList(serializedList);
-  }, [data]);
+  }, [data, floor]);
 
-  useEffect(() => {
-    /**
-     * @todo get floor capacity
-     */
-  }, [filteredList]);
+  console.log(filteredList);
 
   return (
-    <LayoutContainer title="Occupation des bureaux" className={css.container}>
-      <Card
-        center={false}
-        className={css.building}
-        containerClassName={css.containerContent}
-        title="Plan étage"
-      >
-        <Floor
-          floor={floor}
-          room={null}
-          setRoom={setRoom}
-          className={css.test}
-        ></Floor>
-      </Card>
-      <Card className={css.persons} title="Nombre personnes étage">
-        <GraphPersons persons={filteredList?.length} capacity={capacity} />
-      </Card>
-
-      <Card className={css.bureau} title="Nombre de bureau">
-        <RoomNumber nbOfRooms={5} />
-      </Card>
-      <div className={css.listContainer}>
-        <CardList
-          title="Liste des personnes"
-          className={css.list}
-          list={filteredList}
-        />
-      </div>
+    <LayoutContainer
+      title="Occupation des bureaux"
+      className={
+        floor === 1 || floor === 6 ? css.container : css.emptyContainer
+      }
+    >
+      {floor === 1 || floor === 6 ? (
+        <>
+          {" "}
+          <Card
+            center={false}
+            className={css.building}
+            containerClassName={css.containerContent}
+            title="Plan étage"
+          >
+            <Floor
+              floor={floor}
+              room={null}
+              setRoom={setRoom}
+              className={css.test}
+            ></Floor>
+          </Card>
+          <Card className={css.persons} title="Nombre personnes étage">
+            <GraphPersons persons={filteredList?.length} capacity={capacity} />
+          </Card>
+          <Card className={css.bureau} title="Nombre de bureau">
+            <RoomNumber nbOfRooms={5} />
+          </Card>
+          <div className={css.listContainer}>
+            <CardList
+              title="Liste des personnes"
+              className={css.list}
+              list={filteredList}
+            />
+          </div>
+        </>
+      ) : (
+        <h2>no data here</h2>
+      )}
     </LayoutContainer>
   );
 }
