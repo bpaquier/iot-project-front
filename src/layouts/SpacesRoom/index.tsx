@@ -41,7 +41,7 @@ export default function SpacesRoom({ id_room, floor, roomsData }: IProps) {
    */
   return (
     <LayoutContainer
-      title={`Salle ${id_room}`}
+      title={`Salle ${roomsData.find((room) => room.id_room == id_room).name}`}
       className={floor == 1 || floor == 6 ? css.container : css.emptyContainer}
     >
       {floor == 1 || floor == 6 ? (

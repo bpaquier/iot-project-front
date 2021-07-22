@@ -50,7 +50,7 @@ export default function SpacesRoom({ floor, roomsData }: IProps) {
    */
   return (
     <LayoutContainer
-      title="Occupation des bureaux"
+      title={`Etage ${floor}`}
       className={floor == 1 || floor == 6 ? css.container : css.emptyContainer}
     >
       {floor == 1 || floor == 6 ? (
