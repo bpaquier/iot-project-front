@@ -14,12 +14,36 @@ import Building from "~/components/Building";
 import FluxeoPieChart from "~/components/FluxeoPieChart";
 import OccupationCard from "~/components/OccupationCard";
 import List from "~/components/CardList";
+import AlertsList from "~/components/AlertsList";
+
+import { alertsData } from "./data";
 
 export default function Home() {
   const list = useUpdatedPresence();
   const [floorHovered, setFloorHovered] = useState(null);
   const [filteredList, setFilteredList] = useState([]);
   const [dataForPie, setDataForPie] = useState([]);
+  const [alerts, setAlerts] = useState(alertsData);
+
+  const removeAlert = (id: number) => {
+    const newArr = alerts.map((alert, i) => {
+      if (alert.id < id) {
+        return alert;
+      } else if (alert.id == id) {
+        return {
+          ...alert,
+          isVisible: false,
+        };
+      } else if (alert.id > id) {
+        console.log("-1");
+        return {
+          ...alert,
+          order: alert.order - 1,
+        };
+      }
+    });
+    setAlerts(newArr);
+  };
 
   useEffect(() => {
     if (!list.data) return;
@@ -70,6 +94,12 @@ export default function Home() {
       >
         <FluxeoPieChart activeFloor={floorHovered} data={dataForPie} />
       </Card>
+
+      <div className={css.alertsContainer}>
+        <h2>Centre d'alertes</h2>
+        <AlertsList alerts={alerts} removeAlert={removeAlert} />
+      </div>
+
       <div className={css.listContainer}>
         <List
           title="Liste des personnes"
