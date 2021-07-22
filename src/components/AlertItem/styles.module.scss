@@ -1,0 +1,32 @@
+@import "styles/theme";
+.item {
+  color: white;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  transition: transform 0.3s ease-out;
+  &.success {
+    background-color: map-get($alerts-colors, "success-green");
+    border: 1px solid map-get($alerts-colors, "success-green-2");
+  }
+  &.info {
+    background-color: map-get($alerts-colors, "information-blue");
+    border: 1px solid map-get($alerts-colors, "information-blue-2");
+  }
+  &.warning {
+    background-color: map-get($alerts-colors, "warning-orange");
+    border: 1px solid map-get($alerts-colors, "warning-orange-2");
+  }
+  &.error {
+    background-color: map-get($alerts-colors, "alert-red");
+    border: 1px solid map-get($alerts-colors, "alert-red-2");
+  }
+
+  .icon {
+  }
+
+  .text {
+  }
+}

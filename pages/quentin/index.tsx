@@ -7,7 +7,7 @@ const alertsData = [
     type: "error",
     order: 1,
     message: "Error message",
-    height: 100,
+    height: 50,
     isVisible: true,
   },
   {
@@ -15,7 +15,7 @@ const alertsData = [
     type: "info",
     order: 2,
     message: "Info message",
-    height: 100,
+    height: 50,
     isVisible: true,
   },
   {
@@ -23,7 +23,7 @@ const alertsData = [
     type: "warning",
     order: 3,
     message: "Warning message",
-    height: 100,
+    height: 50,
     isVisible: true,
   },
   {
@@ -31,7 +31,7 @@ const alertsData = [
     type: "success",
     order: 4,
     message: "Success message",
-    height: 100,
+    height: 50,
     isVisible: true,
   },
 ];

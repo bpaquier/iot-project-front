@@ -1,8 +1,9 @@
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
 import { useEffect } from "react";
-import { motion } from "framer-motion";
-import { AnimatePresence } from "framer-motion";
+
+import AlertItem from "~/components/AlertItem";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { IAlert } from "~/types";
 const cx = classnames.bind(css);
@@ -12,36 +13,26 @@ interface IProps {
   removeAlert?: (alertId: number) => void;
 }
 
-function AlertsList({ alerts, removeAlert }: IProps) {
-  const paddingTop = 10;
+const MotionAlertItem = motion(AlertItem);
 
+function AlertsList({ alerts, removeAlert }: IProps) {
   return (
-    <div className={css.container}>
-      <AnimatePresence>
-        {paddingTop && <motion.div />}
-        {alerts.map(({ id, isVisible, message, order, type }, i) => {
+    <AnimatePresence>
+      <div className={css.container}>
+        {alerts.map((alert) => {
           return (
-            isVisible && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                key={i}
-                className={cx(css.alert, css[type])}
-                onClick={() => removeAlert(id)}
-                style={{
-                  transform: `translateY(${
-                    (order - 1) * (100 + paddingTop)
-                  }px)`,
-                }}
-              >
-                {message}
-              </motion.div>
-            )
+            <MotionAlertItem
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              key={alert.id}
+              alert={alert}
+              removeAlert={removeAlert}
+            />
           );
         })}
-      </AnimatePresence>
-    </div>
+      </div>
+    </AnimatePresence>
   );
 }
 
