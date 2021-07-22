@@ -1,8 +1,10 @@
 @import "styles/theme";
 
-.container {
-  width: 35rem;
-  height: 12rem;
+.containerBusyTime {
+  margin-top: 1rem;
+  min-width: 300px;
+  max-width: 35rem;
+  width: 80%;
 
   svg {
     path[name]:not([fill="#ED7270"]) {
