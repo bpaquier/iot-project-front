@@ -33,7 +33,6 @@ function ItemList({
   isOpen,
   isFloor,
 }: ListItemProps) {
-  console.log(generalKey, selectedItem);
 
   const { page, setPage } = useContext(PageContext);
 
