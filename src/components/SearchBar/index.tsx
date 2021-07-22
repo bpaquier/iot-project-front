@@ -18,11 +18,18 @@ export default function SearchBar() {
 
   const list = useUpdatedPresence();
   const [filteredList, setFilteredList] = useState([]);
+  const [ personRoomId, setPersonRoomId ] = useState();
 
   const [activeFloor, setActiveFloor] = useState();
   const { floor, setFloor } = useContext(FloorContext);
   const { room, setRoom } = useContext(RoomContext);
   const { page, setPage } = useContext(PageContext);
+
+  useEffect(() => {
+      if(room !== personRoomId) {
+        setSearchValue("");
+      }
+  }, [room])
 
   useEffect(() => {
     if (!list.data) return;
@@ -48,6 +55,9 @@ export default function SearchBar() {
     console.log("clic");
     setSearchValue(`${person.first_name} ${person.last_name}`);
     setFloor(person.position.floor);
+
+    setPersonRoomId(person.position.room_id);
+    // person.position.room_id || room
     setRoom(person.position.room_id);
     setPage(SPACES_ROOM);
     setActiveFloor(null);
