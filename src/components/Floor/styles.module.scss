@@ -18,6 +18,11 @@
     opacity: 0;
     transition: opacity 0.2s;
     cursor: pointer;
+    transform: translateY(-40px)  scale(1.15);
+
+    @include from("m") {
+      transform: none;
+    }
   }
 
   path:hover {
