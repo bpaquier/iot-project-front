@@ -1,0 +1,9 @@
+.fluxeoIcon {
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

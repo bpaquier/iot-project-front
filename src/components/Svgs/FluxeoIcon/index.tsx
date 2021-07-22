@@ -1,6 +1,11 @@
+import classnames from "classnames/bind";
+import css from "./styles.module.scss";
+const cx = classnames.bind(css);
+
 function FluxeoIcon() {
   return (
     <svg
+      className={css.fluxeoIcon}
       width={54}
       height={54}
       viewBox="0 0 54 54"

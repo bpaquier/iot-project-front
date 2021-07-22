@@ -15,20 +15,19 @@ function Building({ className, floorHovered, setFloorHovered }) {
 
   const { floor, setFloor } = useContext(FloorContext);
   const { page, setPage } = useContext(PageContext);
-
-  const printFloor = (floor: number) => {
-    if (floor === 0) {
-      return "Rez-de-chaussée";
-    } else {
-      return `<span>${floor}</span> ème étage`;
-    }
-  };
-
+  /**
+   * @todo: dinamycly get existing floor in DB
+   */
   return (
     <div className={css.buildingContainer}>
       <svg viewBox="0 0 1224 838" className={cx(css.building, className)}>
         {FLOORS_DATA.map(({ path, id }) => (
           <path
+            className={
+              id === 0 || id === 2 || id === 3 || id === 5 || id === 4
+                ? css.notInDb
+                : ""
+            }
             onClick={() => {
               setFloorSelected(id);
               setPage(SPACES_FLOOR);

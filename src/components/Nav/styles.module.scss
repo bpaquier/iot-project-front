@@ -20,6 +20,7 @@
   align-items: center;
   justify-content: center;
   background-color: map-get($primary-colors, "coral");
+  cursor: pointer;
 }
 
 .nav {
@@ -87,4 +88,3 @@
     calc((var(--item-height) + var(--gap-item)) * var(--active-item))
   );
 }
-
