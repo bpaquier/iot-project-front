@@ -4,6 +4,7 @@ import "react-dates/initialize";
 import { DateRangePicker } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 import moment from "moment";
+import axios from "axios";
 
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
@@ -19,30 +20,44 @@ import AlertsList from "~/components/AlertsList";
 import { alertsData } from "./data";
 import { useUpdatedPresence } from "~/hooks/useUpdatesPresence";
 
+let defaultStartDate = new Date();
+defaultStartDate.setDate(defaultStartDate.getDate() - 2);
+//@ts-ignore
+defaultStartDate = defaultStartDate.toJSON();
+const defaultEndDate = new Date().toJSON();
+let defaultData = [];
+const setDefaultData = () => {
+  axios({
+    baseURL: "https://fluxeo-back.herokuapp.com",
+    url: `/presence-7-days/${defaultStartDate}/${defaultEndDate}`,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  })
+  .then((rep) => {
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    let data = rep.data.data.map(obj => {
+      const rObj = {
+        date: null,
+        occupation: obj.averagePresence,
+      };
+      //@ts-ignore
+      rObj.date = new Date(obj.date).toLocaleDateString("fr-FR", options);
+      return rObj;
+    });
+    defaultData = data;
+  })
+  .catch((rep) => {
+    console.log(rep);
+  });
+};
+setDefaultData();
+
 export default function Stats() {
-  function setRandomData(newStartDate = startDate, newEndDate = endDate) {
-    if (newStartDate && newEndDate) {
-      const data = [];
-      const daysDiff = newEndDate.diff(newStartDate, "days");
-      const options = { day: "numeric", month: "short", year: "numeric" };
-
-      for (let i = 0; i <= daysDiff; i++) {
-        let date = new Date(newEndDate.toDate());
-        date.setDate(date.getDate() - i);
-        data.unshift({
-          //@ts-ignore
-          date: date.toLocaleDateString("fr-FR", options),
-          occupation: Math.floor(Math.random() * 100),
-        });
-      }
-
-      return data;
-    }
-  }
-
-  const [startDate, setStartDate] = useState(moment().add(-6, "days"));
+  const [startDate, setStartDate] = useState(moment("20-07-2021", "DD-MM-YYYY"));
   const [endDate, setEndDate] = useState(moment());
-  const [data, setData] = useState(setRandomData);
+  const [data, setData] = useState(defaultData);
   const [focusedInput, setFocusedInput] = useState(null);
   const [alerts, setAlerts] = useState(alertsData);
   const list = useUpdatedPresence();
@@ -52,7 +67,32 @@ export default function Stats() {
   const handleDatesChange = ({ startDate, endDate }) => {
     setStartDate(startDate);
     setEndDate(endDate);
-    setData(setRandomData(startDate, endDate));
+    if (startDate && endDate) {
+      axios({
+        baseURL: "https://fluxeo-back.herokuapp.com",
+        url: `/presence-7-days/${startDate.toDate().toJSON()}/${endDate.toDate().toJSON()}`,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((rep) => {
+        const options = { day: "numeric", month: "short", year: "numeric" };
+        let data = rep.data.data.map(obj => {
+          const rObj = {
+            date: null,
+            occupation: obj.averagePresence,
+          };
+          //@ts-ignore
+          rObj.date = new Date(obj.date).toLocaleDateString("fr-FR", options);
+          return rObj;
+        });
+        setData(data);
+      })
+      .catch((rep) => {
+        console.log(rep);
+      });
+    }
   };
 
   const removeAlert = (id: number) => {
@@ -65,7 +105,6 @@ export default function Stats() {
           isVisible: false,
         };
       } else if (alert.id > id) {
-        console.log("-1");
         return {
           ...alert,
           order: alert.order - 1,
@@ -102,7 +141,7 @@ export default function Stats() {
             openDirection={"up"}
             showDefaultInputIcon
             inputIconPosition="after"
-            isOutsideRange={(day) => day.isAfter(moment())}
+            isOutsideRange={(day) => day.isAfter(moment()) || day.isBefore(moment("20-07-2021", "DD-MM-YYYY"))}
           />
         </div>
       </Card>
