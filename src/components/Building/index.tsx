@@ -52,12 +52,12 @@ function Building({ className, floorHovered, setFloorHovered }) {
             "Rez de chaussée"
           ) : (
             <>
-              Etage <span>{floorHovered}</span>
+              Étage <span>{floorHovered}</span>
             </>
           )}
         </p>
       ) : (
-        <p className={css.text}>Selectionnez un étage</p>
+        <p className={css.text}>Sélectionnez un étage</p>
       )}
     </div>
   );
