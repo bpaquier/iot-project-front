@@ -45,8 +45,6 @@ export default function SpacesRoom({ floor, roomsData }: IProps) {
     setFilteredList(serializedList);
   }, [data, floor]);
 
-  console.log(filteredList);
-
   return (
     <LayoutContainer
       title="Occupation des bureaux"
@@ -56,7 +54,6 @@ export default function SpacesRoom({ floor, roomsData }: IProps) {
     >
       {floor === 1 || floor === 6 ? (
         <>
-          {" "}
           <Card
             center={false}
             className={css.building}
@@ -74,7 +71,9 @@ export default function SpacesRoom({ floor, roomsData }: IProps) {
             <GraphPersons persons={filteredList?.length} capacity={capacity} />
           </Card>
           <Card className={css.bureau} title="Nombre de bureau">
-            <RoomNumber nbOfRooms={5} />
+            <RoomNumber
+              nbOfRooms={roomsData.filter((room) => room.floor == floor).length}
+            />
           </Card>
           <div className={css.listContainer}>
             <CardList

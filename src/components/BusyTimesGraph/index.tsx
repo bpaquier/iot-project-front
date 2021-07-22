@@ -48,7 +48,7 @@ function BusyTimesGraph() {
   useEffect(() => {}, [selectedData, activeDay]);
 
   return (
-    <div className={css.container}>
+    <div className={css.containerBusyTime}>
       <BusyTimesDays
         handleClick={handleClick}
         daysPosition={daysPosition}
@@ -56,7 +56,7 @@ function BusyTimesGraph() {
       />
       <BusyTimesLabel data={dataGraph[activeDay][selectedData]} />
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart width={150} height={40} data={dataGraph[activeDay]}>
+        <BarChart data={dataGraph[activeDay]}>
           <Bar
             radius={[10, 10, 10, 10]}
             barSize={12}
