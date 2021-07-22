@@ -1,18 +1,18 @@
 @font-face {
-    font-family: "Helvetica Neue Bold";
-    src: url("~/assets/fonts/HelveticaNeue-Bold.woff");
-    font-weight: bold;
+    font-family: "HelveticaNeueBold";
+    src: url("../assets/fonts/HelveticaNeue-Bold.woff");
+    font-weight: 700;
 }
 
 @font-face {
-    font-family: "Helvetica Neue Medium";
-    src: url("~/assets/fonts/HelveticaNeue-Medium.woff");
-    font-weight: normal;
+    font-family: "HelveticaNeueMedium";
+    src: url("../assets/fonts/HelveticaNeue-Medium.woff");
+    font-weight: 500;
 }
 
 @font-face {
-    font-family: "Helvetica Neue Regular";
-    src: url("~/assets/fonts/HelveticaNeue.woff");
-    font-weight: normal;
+    font-family: "HelveticaNeueRegular";
+    src: url("../assets/fonts/HelveticaNeue.woff");
+    font-weight: 400;
 }
 
