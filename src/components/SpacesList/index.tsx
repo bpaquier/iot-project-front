@@ -43,7 +43,6 @@ function groupByFloor(data) {
 
 function SpacesList({ isOpen, spaceData, toggleIsOpen }: SpacesListProps) {
   const [activeFloor, setActiveFloor] = useState();
-  const [selectedItem, setSelectedItem] = useState("");
   const { floor, setFloor } = useContext(FloorContext);
   const { room, setRoom } = useContext(RoomContext);
   const { page, setPage } = useContext(PageContext);
@@ -65,8 +64,16 @@ function SpacesList({ isOpen, spaceData, toggleIsOpen }: SpacesListProps) {
     }
   }, [page]);
 
+  useEffect(() => {
+        
+  }, [isOpen])
+
   return (
     <div className={cx(css.spacesMenu, isOpen ? css.spacesMenuOpen : null)}>
+        <div className={cx(css.layer, {[css.visible]: isOpen })} onClick={()=>{
+          toggleIsOpen(false);
+        }} >
+        </div>
       <h3 className={css.title}>étages</h3>
       {floorsList.map((f, index) => {
         const heightItem = {
@@ -75,14 +82,14 @@ function SpacesList({ isOpen, spaceData, toggleIsOpen }: SpacesListProps) {
         };
         const heightFloor =
           heightItem.heightLabel + f.length * heightItem.heightRoom;
-
+          
         return (
           <ul
             className={cx(
               css.floor,
-              activeFloor == index ? css.floorOpen : null
+              activeFloor === index ? css.floorOpen : null
             )}
-            style={activeFloor == index ? { height: `${heightFloor}px` } : null}
+            style={activeFloor === index ? { height: `${heightFloor}px` } : null}
             key={index}
           >
             <ItemList
@@ -92,9 +99,11 @@ function SpacesList({ isOpen, spaceData, toggleIsOpen }: SpacesListProps) {
               handleClick={() => {
                 setPage(SPACES_FLOOR);
                 setFloor(index);
+                toggleIsOpen(false);                
+                  setActiveFloor(null)
               }}
               withIcon={true}
-              isOpen={activeFloor == index}
+              isOpen={activeFloor === index}
               openFloor={setActiveFloor}
               generalKey={f[0].floor}
               selectedItem={floor}
@@ -111,6 +120,7 @@ function SpacesList({ isOpen, spaceData, toggleIsOpen }: SpacesListProps) {
                         setPage(SPACES_ROOM);
                         setFloor(r.floor);
                         setRoom(r.id_room);
+                        toggleIsOpen(false)
                       }}
                       withIcon={false}
                       generalKey={r.id_room}
