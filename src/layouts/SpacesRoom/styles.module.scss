@@ -30,12 +30,11 @@
   }
 
   @include from("xl") {
-    grid-template-rows: auto repeat(2, minmax(33rem, 0.5fr));
+    grid-template-rows: auto minmax(33rem, 0.5fr);
 
     grid-template-areas:
-      "building building building building"
-      "list list list persons"
-      "occupation occupation occupation .";
+      "building building building list"
+      "occupation occupation persons persons";
   }
   height: 90%;
   max-width: calc(100vw - 6rem);

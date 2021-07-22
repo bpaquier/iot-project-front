@@ -1,7 +1,7 @@
 @import "styles/theme";
 
 .card {
-  background: map-get($primary-colors, "background");
+  background: map-get($primary-colors, "white");
   @include shadow;
   border-radius: 1.5rem;
   padding: 2rem;
