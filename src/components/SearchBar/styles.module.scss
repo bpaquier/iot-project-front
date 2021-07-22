@@ -13,14 +13,18 @@
 
 .red {
   border: 1px solid map-get($primary-colors, "coral");
+
+.searchBar svg {
+  margin-left: 0.8rem;
 }
 
 .input {
-  margin-left: 1rem;
+  margin-left: 0.5rem;
   border: none;
   outline: none;
   width: 85%;
   height: 80%;
+  font-family: 'HelveticaNeueRegular';
 }
 
 .input::-webkit-search-decoration,

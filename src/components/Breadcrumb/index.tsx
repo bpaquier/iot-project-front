@@ -17,12 +17,16 @@ interface Breadcrumb {
   step?: string;
   roomName?: string;
   spaceData?: any;
+  isOpen?: boolean;
+  toggleIsOpen?: any;
 }
 
 function Breadcrumb({
   step = "Etage 2",
   roomName = "Bureau 3",
   spaceData,
+  isOpen,
+  toggleIsOpen
 }: Breadcrumb) {
   // State
   const [homeItem, setHomeItem] = useState(false);
@@ -65,6 +69,7 @@ function Breadcrumb({
         })}
         onClick={() => {
           setPage(HOME);
+          toggleIsOpen(!isOpen)
         }}
       >
         Fluxeo
@@ -76,6 +81,7 @@ function Breadcrumb({
           <span
             onClick={() => {
               setPage(SPACES_FLOOR);
+              toggleIsOpen(!isOpen)
             }}
             className={cx(css.initial, { isActive: !showRoom })}
           >

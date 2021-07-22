@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: flex-start;
   font-size: 20px;
-  font-family: map-get($fonts, "title");
+  font-family: 'HelveticaNeueMedium';
   color: map-get($neutral-colors, "athens-gray-1");
   gap: 2rem;
 
@@ -19,5 +19,5 @@
 }
 
 .isActive {
-  color: red;
+  color: map-get($primary-colors, "coral");
 }
