@@ -51,11 +51,9 @@ export default function SpacesRoom({ floor, roomsData }: IProps) {
   return (
     <LayoutContainer
       title="Occupation des bureaux"
-      className={
-        floor === 1 || floor === 6 ? css.container : css.emptyContainer
-      }
+      className={floor == 1 || floor == 6 ? css.container : css.emptyContainer}
     >
-      {floor === 1 || floor === 6 ? (
+      {floor == 1 || floor == 6 ? (
         <>
           <Card
             center={false}
