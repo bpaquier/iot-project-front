@@ -20,8 +20,6 @@
     transition: opacity 0.2s;
     cursor: pointer;
 
-    transform: translateY(-20px) scale(1.2);
-
     &.notInDb {
       fill: rgba(0, 0, 0, 0.1);
       stroke: rgba(0, 0, 0, 0.2);
