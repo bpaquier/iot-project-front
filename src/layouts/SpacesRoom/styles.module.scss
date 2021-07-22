@@ -25,19 +25,24 @@
 
     grid-template-areas:
       "building building building building"
-      "occupation occupation persons persons"
-      "list list list list";
+      "persons list list list"
+      "occupation occupation occupation occupation";
   }
 
   @include from("xl") {
-    grid-template-rows: auto minmax(33rem, 0.5fr);
+    grid-template-rows: auto repeat(2, minmax(33rem, 0.5fr));
 
     grid-template-areas:
       "building building building building"
-      "occupation persons list list";
+      "list list list persons"
+      "occupation occupation occupation .";
   }
   height: 90%;
   max-width: calc(100vw - 6rem);
+}
+
+.customCard {
+  padding-bottom: 100px;
 }
 
 .bureau,
