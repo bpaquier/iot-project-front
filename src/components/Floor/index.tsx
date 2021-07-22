@@ -15,7 +15,7 @@ function Floor({ className, floor, room, setRoom }) {
   // EtageX to change with correspondant value
   const viewBoxDatas = [
     "rez de chaussez",
-    "0 0 1740 1018",
+    "0 0 1700 980",
     "etage2",
     "etage3",
     "etage4",
