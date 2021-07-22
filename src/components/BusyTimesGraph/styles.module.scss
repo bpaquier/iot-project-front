@@ -2,9 +2,12 @@
 
 .containerBusyTime {
   margin-top: 1rem;
-  min-width: 300px;
-  max-width: 35rem;
-  width: 80%;
+  max-width: 400px;
+  width: 110%;
+  height: 100px;
+  @include from(m) {
+    width: 80%;
+  }
 
   svg {
     path[name]:not([fill="#ED7270"]) {

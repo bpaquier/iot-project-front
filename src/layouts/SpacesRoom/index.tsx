@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useMemo } from "react";
 
 import classnames from "classnames/bind";
 import css from "./styles.module.scss";
@@ -64,7 +64,11 @@ export default function SpacesRoom({ id_room, floor, roomsData }: IProps) {
         />
       </div>
 
-      <Card className={css.occupation} title="Fréquentation">
+      <Card
+        className={css.occupation}
+        containerClassName={css.customCard}
+        title="Fréquentation"
+      >
         <BusyTimesGraph />
       </Card>
     </LayoutContainer>
