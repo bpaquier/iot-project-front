@@ -25,7 +25,7 @@ export default function App({ roomsData }) {
     case SPACES_FLOOR:
       return <SpacesFloor floor={floor} roomsData={roomsData} />;
     case SPACES_ROOM:
-      return <SpacesRoom id_room={room} floor={floor} />;
+      return <SpacesRoom id_room={room} floor={floor} roomsData={roomsData} />;
     case STATS:
       return <Stats />;
     default:

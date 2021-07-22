@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     setToggleOpen(!toggleOpen);
   };
 
-  useEffect(() => {}, [isLoading]);
+  useEffect(() => { }, [isLoading]);
 
   return (
     <>
@@ -44,7 +44,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           <RoomContextProvider>
             {!isLoading && roomsData && (
               <>
-                <Header spaceData={roomsData} />
+                <Header
+                  spaceData={roomsData}
+                  isOpen={toggleOpen}
+                  toggleIsOpen={setToggleOpen}
+                />
                 <Nav toggleListOfSpaces={toggleListOfSpaces} />
                 <SpacesList
                   spaceData={roomsData}

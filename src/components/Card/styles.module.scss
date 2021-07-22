@@ -1,7 +1,7 @@
 @import "styles/theme";
 
 .card {
-  background: map-get($primary-colors, "background");
+  background: map-get($primary-colors, "white");
   @include shadow;
   border-radius: 1.5rem;
   padding: 2rem;
@@ -9,7 +9,6 @@
   h3 {
     padding-bottom: 1.2rem;
     //border-bottom: 1px solid map-get($neutral-colors, "athens-gray-1");
-    font-family: map-get($fonts, "title");
     font-size: 16px;
     color: map-get($neutral-colors, "bombay");
     top: 3.5rem;

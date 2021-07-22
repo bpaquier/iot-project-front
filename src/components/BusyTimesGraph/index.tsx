@@ -48,7 +48,7 @@ function BusyTimesGraph() {
   useEffect(() => {}, [selectedData, activeDay]);
 
   return (
-    <div className={css.container}>
+    <div className={css.containerBusyTime}>
       <BusyTimesDays
         handleClick={handleClick}
         daysPosition={daysPosition}

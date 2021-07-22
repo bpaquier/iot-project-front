@@ -1,10 +1,12 @@
 @import "styles/theme";
+@import "styles/fonts";
 
 .container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto repeat(3, 300px);
+  grid-template-rows: repeat(3, 300px);
   grid-gap: 3rem;
+  font-family: "HelveticaNeueRegular";
 
   @include from("m") {
     grid-template-columns: repeat(2, 1fr);
@@ -46,7 +48,9 @@
 
 .building {
   position: relative;
+  display: none;
   @include from("m") {
+    display: block;
     grid-row: 1 / span 1;
     grid-column: 1 / -1;
   }

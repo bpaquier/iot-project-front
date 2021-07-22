@@ -10,7 +10,7 @@
   max-width: 100%;
   background-image: url("../../assets//images/building.png");
   background-size: cover;
-  font-family: map-get($fonts, "title");
+  font-family: "HelveticaNeueRegular";
 
   path {
     stroke: map-get($primary-colors, "coral");
@@ -19,6 +19,11 @@
     opacity: 0;
     transition: opacity 0.2s;
     cursor: pointer;
+
+    &.notInDb {
+      fill: rgba(0, 0, 0, 0.1);
+      stroke: rgba(0, 0, 0, 0.2);
+    }
   }
 
   path:hover {

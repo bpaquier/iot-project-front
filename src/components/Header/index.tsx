@@ -6,14 +6,15 @@ import SearchBar from "~/components/SearchBar";
 import Breadcrumb from "~/components/Breadcrumb";
 
 interface HeaderProps {
-  className?: string;
   spaceData: any;
+  isOpen: boolean;
+  toggleIsOpen: any;
 }
 
-function Header({ className, spaceData }: HeaderProps) {
+function Header({ spaceData, isOpen, toggleIsOpen }: HeaderProps) {
   return (
     <header className={css.header}>
-      <Breadcrumb spaceData={spaceData} />
+      <Breadcrumb spaceData={spaceData} isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
       <SearchBar />
     </header>
   );

@@ -1,7 +1,7 @@
 @import "styles/theme";
 
 .header {
-  width: calc(100vw - 6rem);
+  width: 100%;
   height: 6rem;
   position: fixed;
   top: 0;
@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
+  padding-left: 10rem;
   border-bottom: 2px solid map-get($neutral-colors, "athens-gray");
   background-color: map-get($primary-colors, "white");
 }

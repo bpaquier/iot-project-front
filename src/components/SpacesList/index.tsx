@@ -65,24 +65,25 @@ function SpacesList({ isOpen, spaceData, toggleIsOpen }: SpacesListProps) {
   }, [page]);
 
   useEffect(() => {
-        
+
   }, [isOpen])
 
   return (
     <div className={cx(css.spacesMenu, isOpen ? css.spacesMenuOpen : null)}>
-        <div className={cx(css.layer, {[css.visible]: isOpen })} onClick={()=>{
-          toggleIsOpen(false);
-        }} >
-        </div>
+      <div className={cx(css.layer, { [css.visible]: isOpen })} onClick={() => {
+        toggleIsOpen(false);
+      }} >
+      </div>
       <h3 className={css.title}>étages</h3>
       {floorsList.map((f, index) => {
+
         const heightItem = {
           heightLabel: 40,
-          heightRoom: 25,
+          heightRoom: 27,
         };
         const heightFloor =
-          heightItem.heightLabel + f.length * heightItem.heightRoom;
-          
+          heightItem.heightLabel + (f.length * heightItem.heightRoom);
+
         return (
           <ul
             className={cx(
@@ -99,8 +100,8 @@ function SpacesList({ isOpen, spaceData, toggleIsOpen }: SpacesListProps) {
               handleClick={() => {
                 setPage(SPACES_FLOOR);
                 setFloor(index);
-                toggleIsOpen(false);                
-                  setActiveFloor(null)
+                toggleIsOpen(false);
+                setActiveFloor(null)
               }}
               withIcon={true}
               isOpen={activeFloor === index}

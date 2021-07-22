@@ -5,12 +5,12 @@
   top: 6rem;
   left: 6rem;
   z-index: 9;
-  min-width: 20rem;
+  min-width: 25rem;
   height: calc(100vh - 6rem);
   padding: 2.5rem 1rem;
   border-right: 2px solid map-get($neutral-colors, "athens-gray");
   background-color: map-get($neutral-colors, "white");
-  transform: translateX(-20rem);
+  transform: translateX(-25rem);
   transition: all 0.4s linear;
 }
 
@@ -21,7 +21,7 @@
   height: 100vh;
   opacity: 0%;
   z-index: 7;
-  left: 20rem;
+  left: 25rem;
   top: 0;
   transition: all 0.2s linear;
   display: none;
@@ -36,9 +36,8 @@
   transform: translateX(0rem);
 }
 .title {
-  font-family: map-get($fonts, "title");
+  font-family: 'HelveticaNeueBold';
   font-size: 2.5rem;
-  font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 2rem;
   padding-left: 2rem;

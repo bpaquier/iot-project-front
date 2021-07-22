@@ -1,5 +1,5 @@
 import classnames from "classnames/bind";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import css from "./styles.module.scss";
 const cx = classnames.bind(css);
 
@@ -9,20 +9,27 @@ interface GraphPersonsProps {
 }
 
 function GraphPersons({ persons, capacity }: GraphPersonsProps) {
+
   const [progression, setProgression] = useState(360);
+
+  
+  
   const graphstyle = {
     strokeDashoffset: progression,
   };
 
   const calculateStrokeWidth = () => {
     let percent = Math.round((persons * 100) / capacity);
-    let strokePercent = (percent * 360) / 100;
-    return 360 - strokePercent + 20;
+
+    console.log(persons);
+    let strokeNumber = (percent * 360) / 100;
+    
+    return 360 - strokeNumber + 20;
   };
 
-  useEffect(() => {
+  useEffect(() => {    
     setProgression(calculateStrokeWidth());
-  }, []);
+  }, [persons]);
 
   return (
     <div className={css.circleBig}>
