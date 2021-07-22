@@ -17,7 +17,9 @@ import GraphOccupation from "~/components/GraphOccupation";
 import AlertsList from "~/components/AlertsList";
 
 import { alertsData } from "./data";
-import { useUpdatedPresence } from "~/hooks/useUpdatesPresence";
+import { useUpdatedPresence, useAveragePresence } from "~/hooks/useUpdatesPresence";
+
+// const getData = (startDate, endDate) => useAveragePresence(startDate.toDate().toJSON(), endDate.toDate().toJSON()).data.data;
 
 export default function Stats() {
   function setRandomData(newStartDate = startDate, newEndDate = endDate) {
@@ -52,7 +54,10 @@ export default function Stats() {
   const handleDatesChange = ({ startDate, endDate }) => {
     setStartDate(startDate);
     setEndDate(endDate);
-    setData(setRandomData(startDate, endDate));
+    if (startDate && endDate) {
+      // setData(useAveragePresence(startDate.toDate().toJSON(), endDate.toDate().toJSON()).data.data);
+      // setData(getData(startDate, endDate));
+    }
   };
 
   const removeAlert = (id: number) => {
