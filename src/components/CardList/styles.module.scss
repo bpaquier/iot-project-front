@@ -80,18 +80,23 @@
   border-radius: 10px;
 }
 
-.employes {
+.employees {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.employe {
+.employee {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 0.8rem;
+  padding: 0.8rem 0;
   font-size: 1.2rem;
+  cursor: pointer;
+
+  &:hover {
+    color: map-get($primary-colors, "coral");
+  }
 
   .service {
     text-align: right;
