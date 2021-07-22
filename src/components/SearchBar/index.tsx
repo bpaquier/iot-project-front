@@ -45,17 +45,19 @@ export default function SearchBar() {
   };
 
   const searchPerson = (person) => {
+    console.log("clic");
     setSearchValue(`${person.first_name} ${person.last_name}`);
     setFloor(person.position.floor);
     setRoom(person.position.room_id);
     setPage(SPACES_ROOM);
     setActiveFloor(null);
+    setActive(false);
   };
 
   const listItems = filteredList.map((item) => (
     <button
       className={css.listItem}
-      onClick={() => searchPerson(item)}
+      onMouseDown={() => searchPerson(item)}
       value={item}
       key={item.id_employee}
     >
@@ -79,7 +81,9 @@ export default function SearchBar() {
         placeholder="Rechercher par nom, équipe..."
         autoComplete="off"
       />
-      {listItems.length > 0 && <div className={css.list}>{listItems}</div>}
+      {listItems.length > 0 && isActive && (
+        <div className={css.list}>{listItems}</div>
+      )}
     </div>
   );
 }
