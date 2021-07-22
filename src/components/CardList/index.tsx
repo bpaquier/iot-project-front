@@ -3,7 +3,11 @@ import css from "./styles.module.scss";
 const cx = classnames.bind(css);
 import { useState, useRef } from "react";
 import classNames from "classnames";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { FloorContext } from "~/contexts/floorContext/index";
+import { RoomContext } from "~/contexts/roomContext/index";
+import { PageContext } from "~/contexts/pageContext/index";
+import { SPACES_ROOM } from "~/data/page";
 // import Card from "~/components/Card";
 
 interface ListProps {
@@ -17,6 +21,9 @@ function List({ className, title, list }: ListProps) {
   const [employeesList, setEmployeesList] = useState([]);
   const [services, setServices] = useState([]);
   const [serviceSelected, setServiceSelected] = useState(null);
+  const { floor, setFloor } = useContext(FloorContext);
+  const { room, setRoom } = useContext(RoomContext);
+  const { page, setPage } = useContext(PageContext);
 
   useEffect(() => {
     if (!data) return;
@@ -45,6 +52,12 @@ function List({ className, title, list }: ListProps) {
     setServiceSelected(e.target.value);
   };
 
+  const handleClick = (employee) => {
+    setRoom(employee.position.room_id);
+    setFloor(employee.position.floor);
+    setPage(SPACES_ROOM);
+  };
+
   return (
     <div className={cx(css.card, className)}>
       <div className={css.headList}>
@@ -59,9 +72,13 @@ function List({ className, title, list }: ListProps) {
         </select>
       </div>
       <div className={css.list}>
-        <ul className={css.employes}>
-          {employeesList?.map((employee, id) => (
-            <div className={css.employe} key={id}>
+        <ul className={css.employees}>
+          {employeesList?.map((employee, i) => (
+            <div
+              className={css.employee}
+              key={i}
+              onClick={() => handleClick(employee)}
+            >
               <span>
                 {employee.first_name} {employee.last_name}
               </span>
