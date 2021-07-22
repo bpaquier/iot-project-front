@@ -13,6 +13,25 @@
   transform: translateX(-20rem);
   transition: all 0.4s linear;
 }
+
+.layer {
+  background-color: map-get($neutral-colors, "black");
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0%;
+  z-index: 7;
+  left: 20rem;
+  top: 0;
+  transition: all 0.2s linear;
+  display: none;
+}
+
+.visible {
+  opacity: 20%;
+  display: block;
+}
+
 .spacesMenuOpen {
   transform: translateX(0rem);
 }
