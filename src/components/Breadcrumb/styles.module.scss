@@ -4,13 +4,23 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-size: 20px;
+  font-size: 14px;
   font-family: 'HelveticaNeueMedium';
   color: map-get($neutral-colors, "athens-gray-1");
-  gap: 2rem;
+  
+  @include from("m") {
+    gap: 2rem;
+    font-size: 20px;
+  }
 
   span {
     white-space: nowrap;
+  }
+  svg {
+    margin: 0 10px;
+    @include from("m") {
+      margin: 0;
+    }
   }
 }
 
