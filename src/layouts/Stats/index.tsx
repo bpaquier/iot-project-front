@@ -22,6 +22,7 @@ import { useUpdatedPresence } from "~/hooks/useUpdatesPresence";
 
 let defaultStartDate = new Date();
 defaultStartDate.setDate(defaultStartDate.getDate() - 2);
+//@ts-ignore
 defaultStartDate = defaultStartDate.toJSON();
 const defaultEndDate = new Date().toJSON();
 let defaultData = [];
@@ -41,6 +42,7 @@ const setDefaultData = () => {
         date: null,
         occupation: obj.averagePresence,
       };
+      //@ts-ignore
       rObj.date = new Date(obj.date).toLocaleDateString("fr-FR", options);
       return rObj;
     });
@@ -81,6 +83,7 @@ export default function Stats() {
             date: null,
             occupation: obj.averagePresence,
           };
+          //@ts-ignore
           rObj.date = new Date(obj.date).toLocaleDateString("fr-FR", options);
           return rObj;
         });
