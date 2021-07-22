@@ -105,7 +105,6 @@
   @include shadow;
   border-radius: 1.5rem;
   padding: 2rem;
-
   display: none;
 
   @include from("xl") {
@@ -113,7 +112,6 @@
     grid-row: 1;
     display: block;
   }
-
   h2 {
     padding-bottom: 1.2rem;
     font-family: "Helvetica Neue";
