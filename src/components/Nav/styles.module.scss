@@ -88,3 +88,22 @@
     calc((var(--item-height) + var(--gap-item)) * var(--active-item))
   );
 }
+.selectorLast {
+  background-color: rgba(map-get($primary-colors, "coral"), 0.2);
+  cursor: default;
+  border-radius: 50%;
+  position: absolute;
+  height: var(--item-height);
+  width: var(--item-height);
+  top: calc(var(--logo-height) + 2rem);
+  pointer-events: none;
+  transition: transform 0.1s ease-in-out;
+  transform: translateY(
+    calc((var(--item-height) + var(--gap-item) + var(--separator-height)) * var(--active-item))
+  );
+}
+.separator {
+  width: 36px;
+  color: rgba(map-get($neutral-colors, "athens-gray"), 0.5);
+  margin: 8px 0;
+}

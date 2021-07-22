@@ -69,7 +69,9 @@ function Breadcrumb({
         })}
         onClick={() => {
           setPage(HOME);
-          toggleIsOpen(!isOpen)
+          if (isOpen) {
+            toggleIsOpen(!isOpen)
+          }
         }}
       >
         Fluxeo
@@ -81,7 +83,9 @@ function Breadcrumb({
           <span
             onClick={() => {
               setPage(SPACES_FLOOR);
-              toggleIsOpen(!isOpen)
+              if (isOpen) {
+                toggleIsOpen(!isOpen)
+              }
             }}
             className={cx(css.initial, { isActive: !showRoom })}
           >

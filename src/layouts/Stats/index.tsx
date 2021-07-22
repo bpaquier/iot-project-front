@@ -14,7 +14,9 @@ import Card from "~/components/Card";
 import List from "~/components/CardList";
 import DailyOccupancyChart from "~/components/DailyOccupancyChart";
 import GraphOccupation from "~/components/GraphOccupation";
+import AlertsList from "~/components/AlertsList";
 
+import { alertsData } from "./data";
 import { useUpdatedPresence } from "~/hooks/useUpdatesPresence";
 
 export default function Stats() {
@@ -42,15 +44,36 @@ export default function Stats() {
   const [endDate, setEndDate] = useState(moment());
   const [data, setData] = useState(setRandomData);
   const [focusedInput, setFocusedInput] = useState(null);
+  const [alerts, setAlerts] = useState(alertsData);
+  const list = useUpdatedPresence();
+  const [floorHovered, setFloorHovered] = useState(null);
+  const [filteredList, setFilteredList] = useState([]);
+
   const handleDatesChange = ({ startDate, endDate }) => {
     setStartDate(startDate);
     setEndDate(endDate);
     setData(setRandomData(startDate, endDate));
   };
 
-  const list = useUpdatedPresence();
-  const [floorHovered, setFloorHovered] = useState(null);
-  const [filteredList, setFilteredList] = useState([]);
+  const removeAlert = (id: number) => {
+    const newArr = alerts.map((alert, i) => {
+      if (alert.id < id) {
+        return alert;
+      } else if (alert.id == id) {
+        return {
+          ...alert,
+          isVisible: false,
+        };
+      } else if (alert.id > id) {
+        console.log("-1");
+        return {
+          ...alert,
+          order: alert.order - 1,
+        };
+      }
+    });
+    setAlerts(newArr);
+  };
 
   useEffect(() => {
     if (!list.data) return;
@@ -83,6 +106,11 @@ export default function Stats() {
           />
         </div>
       </Card>
+      <div className={css.alertsContainer}>
+        <h2>Centre d'alertes</h2>
+        <AlertsList alerts={alerts} removeAlert={removeAlert} />
+      </div>
+
       <div className={css.listContainer}>
         <List
           className={css.list}

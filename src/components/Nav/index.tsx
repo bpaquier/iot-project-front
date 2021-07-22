@@ -25,17 +25,17 @@ const navItems = [
     id: 0,
   },
   {
-    icon: <ClientsIcon />,
-    title: "Occupation des locaux",
-    active: false,
-    page: SPACES_FLOOR,
-    id: 1,
-  },
-  {
     icon: <GraphIcon />,
     title: "Moyennes hebdomadaires",
     active: false,
     page: STATS,
+    id: 1,
+  },
+  {
+    icon: <ClientsIcon />,
+    title: "Occupation des locaux",
+    active: false,
+    page: SPACES_FLOOR,
     id: 2,
   },
 ];
@@ -70,10 +70,19 @@ function Nav({ toggleListOfSpaces }: NavProps) {
   };
 
   const selectorStyle = () => {
-    return {
-      ["--item-height" as any]: `${itemHeight}px`,
-      ["--active-item" as any]: `${activeItem}`,
-    };
+    if (activeItem !== 2) {
+      return {
+        ["--item-height" as any]: `${itemHeight}px`,
+        ["--active-item" as any]: `${activeItem}`,
+      };
+    } else {
+      return {
+        ["--item-height" as any]: `${itemHeight}px`,
+        ["--active-item" as any]: `${activeItem}`,
+        ["--separator-height" as any]: "11px",
+      };
+    }
+
   };
 
   useEffect(() => {
@@ -91,10 +100,10 @@ function Nav({ toggleListOfSpaces }: NavProps) {
         <FluxeoIcon />
       </div>
       <nav className={css.nav}>
-        <div className={css.selector} style={selectorStyle()}></div>
+        <div className={cx(activeItem !== 2 ? css.selector : css.selectorLast)} style={selectorStyle()}></div>
 
         {navItems.map((navItem, index) => {
-          if (index !== 1) {
+          if (index !== navItems.length - 1) {
             return (
               <a
                 key={index}
@@ -108,17 +117,20 @@ function Nav({ toggleListOfSpaces }: NavProps) {
             );
           } else {
             return (
-              <a
-                key={index}
-                ref={item}
-                className={cx(css.navIcon, { active: activeItem === index })}
-                title={navItem.title}
-                onClick={(e) => {
-                  toggleMenu(e);
-                }}
-              >
-                {navItem.icon}
-              </a>
+              <>
+                <hr className={css.separator} />
+                <a
+                  key={index}
+                  ref={item}
+                  className={cx(css.navIcon, { active: activeItem === index })}
+                  title={navItem.title}
+                  onClick={(e) => {
+                    toggleMenu(e);
+                  }}
+                >
+                  {navItem.icon}
+                </a>
+              </>
             );
           }
         })}
