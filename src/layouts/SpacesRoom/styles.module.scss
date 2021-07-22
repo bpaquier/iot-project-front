@@ -21,7 +21,7 @@
 
   @include from("l") {
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto repeat(2, minmax(33rem, 0.5));
+    grid-template-rows: auto repeat(2, minmax(33rem, 0.5fr));
 
     grid-template-areas:
       "building building building building"
